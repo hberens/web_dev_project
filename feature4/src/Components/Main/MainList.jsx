@@ -41,9 +41,9 @@ const MainList = ({ books, onAddComment }) => {
       <div className="book-list">
         <h3>Books:</h3>
         {books && books.length > 0 ? (
-          <ul>
+          <div className="book-container">
             {books.map((book) => (
-              <li key={book.id} className="book-item">
+              <div key={book.id} className="book-item">
                 <strong>
                   <i>{book.title}</i>
                 </strong>{" "}
@@ -94,9 +94,9 @@ const MainList = ({ books, onAddComment }) => {
                 >
                   ❤️
                 </button>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         ) : (
           <p>No books available.</p>
         )}
