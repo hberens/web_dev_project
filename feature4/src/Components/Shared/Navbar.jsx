@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom"; // We'll use React Router for navigation
 import "../../styles.css"; // Import CSS file
 
-// nav bar for all pages
+// nav bar for all pages- link to Home, Books Page, and Favorites
 const Navbar = () => {
   return (
     <nav className="navbar">

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Favorites from "./Favorites/Favorites";
 import Navbar from "./Shared/Navbar";
 import { FavoritesProvider } from "../Context/FavoritesContext";
-//import Home from "./Home/Home.js";
+import Home from "./Home/Home.jsx";
 //import Main from "./Main/Main";
 import "../styles.css";
 
@@ -17,7 +17,8 @@ export default function Components() {
           <Navbar />
 
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/books" element={<Main />} />
             <Route path="/favorites" element={<Favorites />} />
           </Routes>
         </div>

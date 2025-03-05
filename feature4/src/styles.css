@@ -2,24 +2,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 /* General Styles */
+main {
+  padding-top: 60px;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: #f7f2e7;
   color: #333;
   margin: 5pt;
   padding: 0;
-  /*display: flex;
-  flex-direction: column;*/
+  padding-top: 60px;
   align-items: center;
+  display: block;
   background-image: url("https://www.transparenttextures.com/patterns/old-map.png");
 }
 
 /* Navbar Styles */
 nav {
-  background-color: #4b6e5c;
+  position: fixed; /* Sticks the navbar to the top */
+  top: 0; /* Ensures it's at the very top */
+  left: 0;
+  width: 100%; /* Makes it span the full width */
+  background-color: #0b3821;
   padding: 12px 24px;
-  border-radius: 12px;
+  border-radius: 0; /* Optional: Remove rounded corners if you want */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensures it's above other elements */
 }
 
 nav ul {
@@ -43,7 +52,7 @@ nav a:hover {
 }
 
 .book-item {
-  background-color: #a678539e;
+  background-color: #3f2d08db;
   color: #fff;
   border-radius: 12px;
   padding: 16px;
@@ -88,62 +97,6 @@ nav a:hover {
   color: white;
 }
 
-/* Book List */
-/* for later */
-/*
-.book-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-  max-width: 1000px;
-}
-
-.book-card {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 16px;
-  width: 200px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.book-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
-}
-
-.book-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #9d5b3f;
-}*/
-
-/* Favorite Button */
-.favorite-button {
-  background-color: white; /* Button starts as white */
-  border: 1px solid #ff8eb7;
-  padding: 6px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s, color 0.3s, border 0.3s;
-}
-
-.favorite-button.pink {
-  background-color: #ff8eb7; /* Red color when added to favorites */
-  color: white;
-}
-
-.favorite-button.gray {
-  background-color: #fff; /* Gray color when not in favorites */
-  color: white;
-}
-
-.favorite-button:hover {
-  background-color: #ff8eb7;
-}
 
 /* Favorites Page */
 /*.favorites-container {
@@ -161,6 +114,6 @@ h1 {
 }
 
 h2 {
-  color: #4b6e5c; /* green headings */
+  color: #0b3821; /* green headings */
   font-family: "Georgia", serif;
 }
