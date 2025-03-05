@@ -110,7 +110,6 @@ nav a:hover {
 
 .comments-section {
   text-align: left;
-  margin-top: 10px;
   overflow-y: auto;
   max-height: 150px;
   display: flex;
