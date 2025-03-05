@@ -1,0 +1,166 @@
+/* Import Poppins font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/* General Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f7f2e7;
+  color: #333;
+  margin: 5pt;
+  padding: 0;
+  /*display: flex;
+  flex-direction: column;*/
+  align-items: center;
+  background-image: url("https://www.transparenttextures.com/patterns/old-map.png");
+}
+
+/* Navbar Styles */
+nav {
+  background-color: #4b6e5c;
+  padding: 12px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: #f4f0e1;
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #f2bb77;
+}
+
+.book-item {
+  background-color: #a678539e;
+  color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px; /* space between books */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* ensures spacing between title, description, and button */
+}
+
+.book-item p {
+  margin: 0; /* Removes default margins to avoid extra space */
+  font-size: 14px;
+  /*color: #fff;*/
+}
+
+/* Favorite Button */
+.favorite-button {
+  background-color: white;
+  border: 1px solid #ff8eb7;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out,
+    border 0.3s ease-in-out;
+  align-self: flex-start; /* Align button to the left */
+}
+
+.favorite-button.pink {
+  background-color: #ff8eb7;
+  color: white;
+}
+
+.favorite-button.gray {
+  background-color: white;
+  color: #ff8eb7;
+}
+
+.favorite-button:hover {
+  background-color: #ff8eb7;
+  color: white;
+}
+
+/* Book List */
+/* for later */
+/*
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  max-width: 1000px;
+}
+
+.book-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
+}
+
+.book-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #9d5b3f;
+}*/
+
+/* Favorite Button */
+.favorite-button {
+  background-color: white; /* Button starts as white */
+  border: 1px solid #ff8eb7;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+.favorite-button.pink {
+  background-color: #ff8eb7; /* Red color when added to favorites */
+  color: white;
+}
+
+.favorite-button.gray {
+  background-color: #fff; /* Gray color when not in favorites */
+  color: white;
+}
+
+.favorite-button:hover {
+  background-color: #ff8eb7;
+}
+
+/* Favorites Page */
+/*.favorites-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  text-align: center;
+  border: 1px solid #ddd;
+}*/
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  color: #4b6e5c; /* green headings */
+  font-family: "Georgia", serif;
+}
