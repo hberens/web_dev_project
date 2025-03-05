@@ -19,7 +19,7 @@ export const createComment = async (objectId, commentText, username) => {
     comment.set("books", book); // set pointer to the book
     comment.set("username", username); // Set the username
 
-    // Save the comment
+    // Save the comment - UPDATE
     const result = await comment.save();
     return result;
   } catch (error) {
@@ -28,7 +28,7 @@ export const createComment = async (objectId, commentText, username) => {
   }
 };
 
-// fetch comments for the book
+// READ operation for the comments - read the comments in the backend for each book
 export const getCommentsForBook = async (objectId) => {
   try {
     const Books = Parse.Object.extend("Books");
@@ -54,5 +54,30 @@ export const getCommentsForBook = async (objectId) => {
   } catch (error) {
     console.error("Error fetching comments:", error);
     return [];
+  }
+};
+
+// DELETE operation - remove a comment by ID
+export const deleteComment = async (commentId) => {
+  try {
+    console.log(`Deleting comment with ID: ${commentId}`);
+
+    // Query for the comment object by its ID
+    const Comment = Parse.Object.extend("Comment");
+    const query = new Parse.Query(Comment);
+    const comment = await query.get(commentId);
+
+    if (!comment) {
+      throw new Error("Comment not found");
+    }
+
+    // Delete the comment
+    await comment.destroy();
+    console.log(`Comment ${commentId} deleted successfully.`);
+
+    return true; // Indicate success
+  } catch (error) {
+    console.error("Error deleting comment:", error);
+    return false; // Indicate failure
   }
 };

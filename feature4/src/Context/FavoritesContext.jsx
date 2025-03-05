@@ -30,7 +30,6 @@ export const FavoritesProvider = ({ children }) => {
         return prevFavorites.filter((fav) => fav.id !== book.id);
       } else {
         // If not, add it to favorites and change color
-        //button.style.backgroundColor = "#45a049";
         return [...prevFavorites, book];
       }
     });

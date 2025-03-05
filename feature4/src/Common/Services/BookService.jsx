@@ -5,7 +5,6 @@ import Parse from "parse";
 export let Books = { collection: [] };
 
 // READ operation - Get all books from Parse class "Books"
-// very ugly function :/
 export const getAllBooks = async () => {
   try {
     const Book = Parse.Object.extend("Books");

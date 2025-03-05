@@ -15,7 +15,6 @@ export default function Components() {
       <Router>
         <div>
           <Navbar />
-
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/books" element={<Main />} />

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAllBooks } from "/src/Common/Services/BookService";
 import MainList from "./MainList";
 import Favorites from "../Favorites/Favorites";
-import { createComment } from "../../Common/Services/CommentService";
+import { createComment, deleteComment } from "../../Common/Services/CommentService";
 import { Routes, Route } from "react-router-dom";
 import { useFavorites } from "../../Context/FavoritesContext";
 import "../../styles.css";
@@ -70,7 +70,32 @@ const Main = () => {
       console.error("Failed to add comment:", error);
     }
   };
-  // routing
+
+  // Function to handle deleting a comment
+  const handleDeleteComment = async (commentId, bookId) => {
+    try {
+      const success = await deleteComment(commentId);
+      if (success) {
+        setBooks((prevBooks) => {
+          // Create a completely new array with updated book objects
+          const updatedBooks = prevBooks.map((book) => {
+            if (book.id === bookId) {
+              return {
+                ...book,
+                comments: book.comments.filter((comment) => comment.id !== commentId),
+              };
+            }
+            return book;
+          });
+  
+          return [...updatedBooks]; // Force React to detect state change
+        });
+      }
+    } catch (error) {
+      console.error("Failed to delete comment:", error);
+    }
+  };  
+  // routing!! 
   return (
     <div>
       <Routes>
@@ -79,10 +104,11 @@ const Main = () => {
           element={
             <>
               {errorMessage && <div className="error">{errorMessage}</div>}{" "}
-              {/* Show error */}
+              {/* Shows an error message */}
               <MainList
                 books={books}
                 onAddComment={handleAddComment}
+                onDeleteComment={handleDeleteComment}
                 favorites={favorites}
                 toggleFavorite={toggleFavorite}
               />

@@ -1,6 +1,7 @@
 import "../../styles.css";
 import { useFavorites } from "../../Context/FavoritesContext";
 import { useState } from "react";
+import { deleteComment } from "../../Common/Services/CommentService"
 
 const MainList = ({ books, onAddComment }) => {
   const { favorites, toggleFavorite } = useFavorites();
@@ -24,6 +25,21 @@ const MainList = ({ books, onAddComment }) => {
       onAddComment(bookId, username, text); // Pass username and text to parent
     } else {
       alert("Please enter both a username and comment.");
+    }
+  };
+
+  // Handle comment deletion
+  const handleDeleteComment = async (commentId, bookId) => {
+    const confirmed = window.confirm("Are you sure you want to delete this comment?");
+    if (!confirmed) return;
+
+    try {
+      const success = await deleteComment(commentId);
+      if (success) {
+        onDeleteComment(commentId, bookId); // Update state in Main component
+      }
+    } catch (error) {
+      console.error("Failed to delete comment:", error);
     }
   };
 
@@ -58,6 +74,12 @@ const MainList = ({ books, onAddComment }) => {
                       {book.comments.map((comment) => (
                         <li key={comment.id}>
                           <strong>{comment.username}</strong>: {comment.text}
+                          <button
+                            className="delete-comment"
+                            onClick={() => handleDeleteComment(comment.id, book.id)}
+                          >
+                            Delete
+                          </button>
                         </li>
                       ))}
                     </ul>
