@@ -11,7 +11,7 @@ PROJECTNAME-XXXX MINOR Ticket title goes here.
 PROJECTNAME-YYYY PATCH Ticket title goes here.
 Changed
 Fixed
-[0.2.0] - 2025-03-04
+Feature 4 [0.2.0] - 2025-03-04
 Here we would have the update steps for 1.2.4 for people to follow.
 
 Added
@@ -19,8 +19,8 @@ Changed
 PROJECTNAME-ZZZZ PATCH Drupal.org is now used for composer.
 Fixed
 PROJECTNAME-TTTT PATCH Add logic to runsheet teaser delete to delete corresponding schedule cards.
-[0.1.0] - 2025-02-18
-Added
+Feature 3 [0.1.0] - 2025-02-18
+Added 
 Changed
 Fixed
 PROJECTNAME-UUUU MINOR Fix module foo tests
