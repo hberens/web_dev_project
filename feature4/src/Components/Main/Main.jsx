@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { getAllBooks } from "/src/Common/Services/BookService";
-import MainList from "./MainList";
+import BookList from "../Books/BookList";  // Updated import
 import Favorites from "../Favorites/Favorites";
 import { createComment, deleteComment } from "../../Common/Services/CommentService";
 import { Routes, Route } from "react-router-dom";
 import { useFavorites } from "../../Context/FavoritesContext";
 import "../../styles.css";
 
-/* MAIN MODULE WITH STATEFUL PARENT AND STATELESS CHILD */
 const Main = () => {
   const [books, setBooks] = useState([]);
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const { favorites, toggleFavorite } = useFavorites();
 
-  // Fetch all the books for the array to print
+  // Fetch all the books
   useEffect(() => {
     getAllBooks().then((books) => {
       console.log("Fetched books:", books);
@@ -22,36 +21,35 @@ const Main = () => {
       } else {
         console.error("Invalid book data format:", books);
       }
+    }).catch(error => {
+      setErrorMessage("Failed to load books.");
+      console.error("Error fetching books:", error);
     });
   }, []);
 
-  // function to handle adding a comment
+  // Function to handle adding a comment
   const handleAddComment = async (bookId, username, commentText) => {
     try {
-      // add the new comment locally first
       const newComment = {
-        id: Math.random().toString(), // use temp ID to avoid errors
-        username: username,
+        id: Math.random().toString(),
+        username,
         text: commentText,
-        createdAt: new Date(), // adding a timestamp
+        createdAt: new Date(),
       };
 
       setBooks((prevBooks) =>
         prevBooks.map((book) =>
           book.id === bookId
-            ? {
-                ...book,
-                comments: [...book.comments, newComment], // add the new comment locally
-              }
+            ? { ...book, comments: [...book.comments, newComment] }
             : book
         )
       );
 
-      // save the comment to the backend
+      // Save the comment to the backend
       const savedComment = await createComment(bookId, commentText, username);
       console.log("Comment added:", savedComment);
 
-      // update the comment with the real ID just to be safe lol
+      // Update the comment with the real ID
       setBooks((prevBooks) =>
         prevBooks.map((book) =>
           book.id === bookId
@@ -59,7 +57,7 @@ const Main = () => {
                 ...book,
                 comments: book.comments.map((comment) =>
                   comment.id === newComment.id
-                    ? { ...comment, id: savedComment.id } // replace the tempID with the real one
+                    ? { ...comment, id: savedComment.id }
                     : comment
                 ),
               }
@@ -76,26 +74,19 @@ const Main = () => {
     try {
       const success = await deleteComment(commentId);
       if (success) {
-        setBooks((prevBooks) => {
-          // Create a completely new array with updated book objects
-          const updatedBooks = prevBooks.map((book) => {
-            if (book.id === bookId) {
-              return {
-                ...book,
-                comments: book.comments.filter((comment) => comment.id !== commentId),
-              };
-            }
-            return book;
-          });
-  
-          return [...updatedBooks]; // Force React to detect state change
-        });
+        setBooks((prevBooks) =>
+          prevBooks.map((book) =>
+            book.id === bookId
+              ? { ...book, comments: book.comments.filter((comment) => comment.id !== commentId) }
+              : book
+          )
+        );
       }
     } catch (error) {
       console.error("Failed to delete comment:", error);
     }
-  };  
-  // routing!! 
+  };
+
   return (
     <div>
       <Routes>
@@ -103,9 +94,8 @@ const Main = () => {
           path="/"
           element={
             <>
-              {errorMessage && <div className="error">{errorMessage}</div>}{" "}
-              {/* Shows an error message */}
-              <MainList
+              {errorMessage && <div className="error">{errorMessage}</div>}
+              <BookList
                 books={books}
                 onAddComment={handleAddComment}
                 onDeleteComment={handleDeleteComment}
@@ -115,10 +105,7 @@ const Main = () => {
             </>
           }
         />
-        <Route
-          path="/favorites"
-          element={<Favorites favorites={favorites} />}
-        />
+        <Route path="/favorites" element={<Favorites favorites={favorites} />} />
       </Routes>
     </div>
   );

@@ -113,6 +113,57 @@ nav a:hover {
   color: white;
 }
 
+.comments-section {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.comments-section h4 {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.comments-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comments-section li {
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.comments-section .delete-comment {
+  color: white;
+  border: none;
+  background-color: rgb(77, 8, 8);
+  cursor: pointer;
+}
+
+.comments-section input {
+  padding: 8px;
+  margin: 5px 0;
+  width: calc(50% - 10px);
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.comments-section button {
+  padding: 6px 6px;
+  background-color: #3f181b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.comments-section button:hover {
+  background-color: #043f3d;
+}
+
 
 /* Favorites Page */
 /*.favorites-container {

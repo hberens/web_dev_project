@@ -4,7 +4,6 @@ import Favorites from "./Favorites/Favorites";
 import Navbar from "./Shared/Navbar";
 import { FavoritesProvider } from "../Context/FavoritesContext";
 import Home from "./Home/Home.jsx";
-//import Main from "./Main/Main";
 import "../styles.css";
 
 export default function Components() {
@@ -17,7 +16,7 @@ export default function Components() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/books" element={<Main />} />
+            <Route path="/books/*" element={<Main />} />
             <Route path="/favorites" element={<Favorites />} />
           </Routes>
         </div>
