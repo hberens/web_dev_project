@@ -1,27 +1,22 @@
 Change Log
 All notable changes to this project will be documented in this file.
 
-The format is based on Keep a Changelog and this project adheres to Semantic Versioning.
-
-[Unreleased] - yyyy-mm-dd
-Here we write upgrading notes for brands. It's a team effort to make them as straightforward as possible.
-
+v0.2.0 - 2025-03-04
 Added
-PROJECTNAME-XXXX MINOR Ticket title goes here.
-PROJECTNAME-YYYY PATCH Ticket title goes here.
+- Created "Books" and "Comment" Classes for Parse modules
+- Added routing between pages. These pages include the home page, list of books page, and the favorites page.
+- Also added the ability for users to comment on the books listed on the page by entering their name and ssubmitting a text submission to show up on the book card.
+- Additionaly, created a pointer between the "Comment" class and "Books" class to follow the "Rule of 10" and reveal a many-to-one relationship between the two classes. This allows for many comments to be associated with a single book.
 Changed
+- Changed the backend to be a back4app database rather than a JSON file.
+- Switched the main focus of the project from an interactive Notre Dame football website to a popular book-sharing website. The new app resembles a social platform for avid book readers. 
+- Began using Webpack and react-vite rather than codesandbox for more robust design. Additionally, used Github rather than codesandbox for version control.
+- Changed CSS styling to better suite an earth-toned aesthetic rather than a Notre Dame theme.
 Fixed
-Feature 4 [0.2.0] - 2025-03-04
-Here we would have the update steps for 1.2.4 for people to follow.
+- Parse modules issues and incosistent updates between the backend and the frontend. 
 
-Added
-Changed
-PROJECTNAME-ZZZZ PATCH Drupal.org is now used for composer.
-Fixed
-PROJECTNAME-TTTT PATCH Add logic to runsheet teaser delete to delete corresponding schedule cards.
-Feature 3 [0.1.0] - 2025-02-18
+v0.1.0 - 2025-02-18
 Added 
 Changed
 Fixed
-PROJECTNAME-UUUU MINOR Fix module foo tests
-PROJECTNAME-RRRR MAJOR Module foo's timeline uses the browser timezone for date resolution
+
