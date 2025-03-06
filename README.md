@@ -13,4 +13,4 @@ If you are developing a production application, we recommend using TypeScript an
 
 ## Book App
 
-This is an app to list the most popular books right now and allow you to put some of your favorites onto a new page. It also allows for a user to view and delete some comments about the book. 
+This is an app that displays the most popular books right now. It allows you to select certain books to mark them as your favorites that you can then see on a new Favorites page. It also allows for a user to scroll to view and delete some comments about the book on the main Books page. 
