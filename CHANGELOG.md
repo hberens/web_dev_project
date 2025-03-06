@@ -2,7 +2,7 @@ Change Log
 All notable changes to this project will be documented in this file.
 
 v0.2.0 - 2025-03-04 </br>
-Added </br>
+Added
 - Created "Books" and "Comment" Classes for Parse modules
 - Added routing between pages. These pages include the home page, list of books page, and the favorites page.
 - Also added the ability for users to comment on the books listed on the page by entering their name and ssubmitting a text submission to show up on the book card.
