@@ -4,7 +4,7 @@ import "../../styles.css"
 
 const BookItem = ({ book, commentData, onInputChange, onSubmitComment, onDeleteComment, isFavorite, toggleFavorite }) => {
   return (
-    <li className="book-item">
+    <div className="book-item">
       <strong>
         <i>{book.title}</i>
       </strong> by {book.author}
@@ -28,7 +28,7 @@ const BookItem = ({ book, commentData, onInputChange, onSubmitComment, onDeleteC
       >
         ❤️
       </button>
-    </li>
+    </div>
   );
 };
 

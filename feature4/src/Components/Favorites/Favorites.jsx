@@ -8,22 +8,24 @@ const Favorites = () => {
   return (
     <div>
       <h1>My Favorite Books</h1>
+      <div className="book-list"> 
       {favorites.length > 0 ? (
-        <ul>
+        <div className="book-container">
           {favorites.map((book) => (
-            <li key={book.id}>
+            <div className="book-item" key={book.id}>
               <strong>
                 <i>{book.title}</i>
               </strong>{" "}
               by {book.author} |
               <small> Average Rating: {book.average_rating}</small>
               <p>{book.description}</p>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
         <p>No favorite books yet.</p>
       )}
+      </div>
     </div>
   );
 };

@@ -57,7 +57,7 @@ const BookList = ({ books, onAddComment, onDeleteComment }) => {
       <div className="book-list">
         <h3>Books:</h3>
         {books.length > 0 ? (
-          <ul>
+          <div className="book-container">
             {books.map((book) => (
               <BookItem
                 key={book.id}
@@ -70,7 +70,7 @@ const BookList = ({ books, onAddComment, onDeleteComment }) => {
                 toggleFavorite={toggleFavorite}
               />
             ))}
-          </ul>
+          </div>
         ) : (
           <p>No books available.</p>
         )}
