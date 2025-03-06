@@ -15,16 +15,16 @@ Changed </br>
 Fixed </br>
 - Parse modules issues and incosistent updates between the backend and the frontend. 
 
-v0.1.0 - 2025-02-18
+v0.1.0 - 2025-02-18 </br>
 Added </br>
 - Created a JSON file consisting of ND football coaches and their statistics such as seasons, points, and win-loss streak.
 - Created a JSON file consisting of Heisman Trophy Winners and included an interactive dropdown for the user to view the data of the selected Heisman winner.
 - Utilized axios/http to handle data requests to the JSON files.
 - Created more user input options with a form for them to submit the name of their favorite Notre Dame Quarteback.
-- Added asynchronous data in components using promises and async/await functions. </br>
+- Added asynchronous data in components using promises and async/await functions. </br> </br>
 Changed </br>
 - Changed CSS styling to better match Notre Dame's aesthetic using gold, navy blue, and green.
-- Components and folder structure so that we follow the "data down, events up" approach with Props and Events. </br>
+- Components and folder structure so that we follow the "data down, events up" approach with Props and Events. </br> </br>
 Fixed </br>
 - Issues with loading the JSON data to the frontend by improving fetch functions and properly sending props between components. </br>
 
