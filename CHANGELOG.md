@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Added
 - Created "Books" and "Comment" Classes for Parse modules
 - Added routing between pages. These pages include the home page, list of books page, and the favorites page.
-- Also added the ability for users to comment on the books listed on the page by entering their name and ssubmitting a text submission to show up on the book card.
+- Also added the ability for users to comment on the books listed on the page by entering their name and ssubmitting a text submission to show up on the book card. Added a delete button to each comment that will remove them after a refresh. 
 - Additionaly, created a pointer between the "Comment" class and "Books" class to follow the "Rule of 10" and reveal a many-to-one relationship between the two classes. This allows for many comments to be associated with a single book. </br> </br>
 ## Changed 
 - Changed the backend to be a back4app database rather than a JSON file.
