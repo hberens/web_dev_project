@@ -11,9 +11,9 @@ All notable changes to this project will be documented in this file.
 - Changed the backend to be a back4app database rather than a JSON file.
 - Switched the main focus of the project from an interactive Notre Dame football website to a popular book-sharing website. The new app resembles a social platform for avid book readers. 
 - Began using Webpack and react-vite rather than codesandbox for more robust design. Additionally, used Github rather than codesandbox for version control.
-- Changed CSS styling to better suite an earth-toned aesthetic rather than a Notre Dame theme. </br> </br>
+- Changed CSS styling to better suite an earth-toned aesthetic rather than a Notre Dame theme. Added more resposive design surrounding the list of books. </br> </br>
 ## Fixed 
-- Parse modules issues and incosistent updates between the backend and the frontend. 
+- Parse modules issues and incosistent updates between the backend and the frontend.
 
 # v0.1.0 - 2025-02-18 </br>
 ## Added
