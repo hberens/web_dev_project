@@ -7,7 +7,7 @@ export let Books = { collection: [] };
 // READ operation - Get all books from Parse class "Books"
 export const getAllBooks = async () => {
   try {
-    const Book = Parse.Object.extend("Books");
+    const Book = Parse.Object.extend("NewBooks");
     const query = new Parse.Query(Book);
     const results = await query.find();
     console.log("Raw Parse book results:", results);
@@ -37,9 +37,14 @@ export const getAllBooks = async () => {
     const formattedData = results.map((book) => ({
       id: book.id,
       title: book.get("title"),
-      author: book.get("author"),
+      subtitle: book.get("subtitle"),
+      author: book.get("authors"),
+      genre: book.get("categories"),
       average_rating: book.get("average_rating"),
       description: book.get("description"),
+      year: book.get("published_year"),
+      num_pages: book.get("num_pages"),
+      num_ratings: book.get("ratings_count"),
       comments: commentsByBook[book.id] || [],
     }));
 

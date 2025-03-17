@@ -7,6 +7,8 @@ import BookItem from "./BookItem";
 const BookList = ({ books, onAddComment, onDeleteComment }) => {
   const { favorites, toggleFavorite } = useFavorites();
   const [commentData, setCommentData] = useState({});
+  const [expandedBookId, setExpandedBookId] = useState(null);
+
 
   // Handle input change for comments
   const handleInputChange = (bookId, field, value) => {
@@ -44,6 +46,10 @@ const BookList = ({ books, onAddComment, onDeleteComment }) => {
     }
   };
 
+  const handleToggleDetails = (bookId) => {
+    setExpandedBookId((prevId) => (prevId === bookId ? null : bookId)); // Toggle the selected book
+  };
+
   return (
     <div className="main-list">
       <hr />
@@ -68,6 +74,10 @@ const BookList = ({ books, onAddComment, onDeleteComment }) => {
                 onDeleteComment={handleDeleteComment}
                 isFavorite={favorites.some((fav) => fav.id === book.id)}
                 toggleFavorite={toggleFavorite}
+                showMoreDetails={expandedBookId === book.id}
+                toggleDetails={() => handleToggleDetails(book.id)}
+                showDetailsButton={true}
+                showComments={true} 
               />
             ))}
           </div>
