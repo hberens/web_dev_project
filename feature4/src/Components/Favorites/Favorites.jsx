@@ -1,33 +1,33 @@
 import React from "react";
 import { useFavorites } from "../../Context/FavoritesContext";
+import BookItem from "../Books/BookItem";
 import "../../styles.css";
 
-// print out all the favorites from the favorites list
-const Favorites = () => {
-  const { favorites } = useFavorites();
+// Print out all the favorites from the favorites list
+const FavoritesPage = () => {
+  const { favorites, toggleFavorite } = useFavorites();
+
   return (
-    <div>
-      <h1>My Favorite Books</h1>
-      <div className="book-list"> 
-      {favorites.length > 0 ? (
-        <div className="book-container">
-          {favorites.map((book) => (
-            <div className="book-item" key={book.id}>
-              <strong>
-                <i>{book.title}</i>
-              </strong>{" "}
-              by {book.author} |
-              <small> Average Rating: {book.average_rating}</small>
-              <p>{book.description}</p>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>No favorite books yet.</p>
-      )}
+    <div className="favorites-list">
+      <h2>Favorite Books</h2>
+      <div className="book-container">
+        {favorites.length > 0 ? (
+          favorites.map((book) => (
+            <BookItem
+              key={book.id}
+              book={book}
+              showComments={false}  
+              isFavorite={true} 
+              toggleFavorite={toggleFavorite}
+              showDetailsButton={false}
+            />
+          ))
+        ) : (
+          <p>No favorite books added yet.</p>
+        )}
       </div>
     </div>
   );
 };
 
-export default Favorites;
+export default FavoritesPage;
