@@ -12,6 +12,12 @@ const Home = () => {
     localStorage.removeItem("isAuthenticated");
     navigate("/login");
   };
+  const handleLoginRedirect = () => {
+    navigate("/login"); 
+  };
+  const handleRegister = () => {
+    navigate("/register");
+  };
 
   return (
     <div className="home-container">
@@ -22,7 +28,12 @@ const Home = () => {
         comments about them.
       </p>
       <button onClick={handleLogout}>Logout</button>
-      <button><a href="/login" class="login-button">Log In</a></button>
+      <button onClick={handleLoginRedirect} className="login-button">
+        Log In
+      </button>
+      <button onClick={handleRegister} className="register-button">
+        Register
+      </button>
     </div>
   );
 };
