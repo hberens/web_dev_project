@@ -22,6 +22,7 @@ const Home = () => {
         comments about them.
       </p>
       <button onClick={handleLogout}>Logout</button>
+      <button><a href="/login" class="login-button">Log In</a></button>
     </div>
   );
 };
