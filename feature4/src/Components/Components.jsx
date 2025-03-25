@@ -18,7 +18,7 @@ export default function Components() {
             <Route path="/" element={<Home />} />
             <Route path="/books/*" element={<Main />} />
             <Route path="/favorites" element={<Favorites />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            {/*<Route path="*" element={<Navigate to="/" replace />} />*/}
           </Routes>
         </div>
       </Router>
