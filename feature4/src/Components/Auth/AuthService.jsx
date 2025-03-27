@@ -1,4 +1,4 @@
-import Parse from "parse";
+/*import Parse from "parse";
 
 export const createUser = (newUser) => {
   const user = new Parse.User();
@@ -29,4 +29,49 @@ export const loginUser = async (user) => {
   } catch (error) {
     throw new Error("Invalid credentials");
   }
+};
+*/
+
+import Parse from "parse";
+
+// Login user
+export const loginUser = async (userData) => {
+  try {
+    const user = await Parse.User.logIn(userData.email, userData.password);
+    return user;
+  } catch (error) {
+    throw new Error("Invalid login credentials");
+  }
+};
+
+// Register user
+export const registerUser = async (userData) => {
+  try {
+    const user = new Parse.User();
+    user.set("username", userData.email);
+    user.set("email", userData.email);
+    user.set("password", userData.password);
+    user.set("firstName", userData.firstName);
+    user.set("lastName", userData.lastName);
+
+    await user.signUp();
+    return user;
+  } catch (error) {
+    throw new Error("Error creating user account");
+  }
+};
+
+// Logout user
+export const logoutUser = async () => {
+  try {
+    await Parse.User.logOut();
+    return true;
+  } catch (error) {
+    throw new Error("Error logging out");
+  }
+};
+
+// Check if user is authenticated
+export const checkUser = () => {
+  return Parse.User.current() && Parse.User.current().authenticated();
 };

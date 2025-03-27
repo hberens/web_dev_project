@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Parse from 'parse';
 import './Account.css';
+import { logoutUser } from "../Auth/AuthService";
 
 const Account = ({setIsAuthenticated}) => {
   const navigate = useNavigate();
@@ -37,9 +38,9 @@ const Account = ({setIsAuthenticated}) => {
 
   const handleLogout = async () => {
     try {
-      await Parse.User.logOut();
+      await logoutUser();  // Use the service function
       localStorage.removeItem('isAuthenticated');
-      setIsAuthenticated(false); // Now this will work
+      setIsAuthenticated(false);
       navigate('/login');
     } catch (error) {
       console.error('Error logging out:', error);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUser } from "./AuthService";
+import { registerUser } from "./AuthService";
 import AuthForm from "./AuthForm";
 
 const AuthRegister = () => {
@@ -17,11 +17,9 @@ const AuthRegister = () => {
 
   useEffect(() => {
     if (newUser && add) {
-      createUser(newUser).then((userCreated) => {
+      registerUser(newUser).then((userCreated) => {  // Use the service function
         if (userCreated) {
-          alert(
-            `${userCreated.get("firstName")}, you successfully registered!`
-          );
+          alert(`${userCreated.get("firstName")}, you successfully registered!`);
         }
         setAdd(false);
       });
