@@ -22,7 +22,18 @@ const BookList = ({ books, onAddComment, onDeleteComment }) => {
   };
 
   // Handle comment submission
+  // const handleSubmitComment = (bookId) => {
+  //   const { username, text } = commentData[bookId] || {};
+  //   if (username?.trim() && text?.trim()) {
+  //     onAddComment(bookId, username, text);
+  //     setCommentData((prev) => ({ ...prev, [bookId]: { username: "", text: "" } })); // Reset input
+  //   } else {
+  //     alert("Please enter both a username and comment.");
+  //   }
+  // };
   const handleSubmitComment = (bookId) => {
+    console.log("Submitting comment for book:", bookId, commentData[bookId]);
+  
     const { username, text } = commentData[bookId] || {};
     if (username?.trim() && text?.trim()) {
       onAddComment(bookId, username, text);
