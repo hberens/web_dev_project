@@ -7,7 +7,7 @@ main {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif !important;
   background-color: #f7f2e7;
   color: #333;
   margin: 5pt;
@@ -44,6 +44,7 @@ nav {
   transform: scale(1.1) rotate(2deg); /* Slight grow and tilt on hover */
 }
 
+
 .nav-list {
   display: flex;
   list-style: none;
@@ -58,8 +59,8 @@ nav {
 
 .nav-link {
   text-decoration: none;
-  color: white;
-  font-size: 18px;
+  color: white !important;
+  font-size: 18px !important;
   padding: 0.5rem 0;
   transition: all 0.3s;
 }
@@ -232,6 +233,23 @@ nav {
   flex-grow: 1; /* Allows descriptions to take space but not overflow */
 }
 
+/* show more details button*/ 
+.details-button {
+  background-color: white;
+  border: 1px solid #0b3821;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 8px 0;
+  width: auto;
+  color: #0b3821;
+  transition: all 0.3s ease;
+}
+
+.details-button:hover {
+  background-color: #0b3821;
+  color: white;
+}
 /* book descipriton-scrolling */ 
 .description-container {
   max-height: 250px; 
@@ -377,7 +395,7 @@ nav {
 .comments-section input {
   padding: 8px;
   margin: 5px 0;
-  width: calc(50% - 10px);
+  width: 90%;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
@@ -403,5 +421,5 @@ h1 {
 
 h2 {
   color: #0b3821; /* green headings */
-  font-family: "Georgia", serif;
+  font-family: "Georgia", serif !important;
 }

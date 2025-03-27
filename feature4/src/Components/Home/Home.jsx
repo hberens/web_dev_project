@@ -7,11 +7,6 @@ import Parse from "parse";
 const Home = () => {
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    await Parse.User.logOut();
-    localStorage.removeItem("isAuthenticated");
-    navigate("/login");
-  };
   const handleLoginRedirect = () => {
     navigate("/login"); 
   };
@@ -27,7 +22,6 @@ const Home = () => {
         different categories, add books to your favorites, and even leave
         comments about them.
       </p>
-      <button onClick={handleLogout}>Logout</button>
       <button onClick={handleLoginRedirect} className="login-button">
         Log In
       </button>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles.css"; // Import CSS file
 
-const Navbar = () => {
+const Navbar = ({ isAuthenticated }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to toggle menu visibility
 
   const toggleMenu = () => {
@@ -37,6 +37,19 @@ const Navbar = () => {
             Favorites
           </Link>
         </li>
+        {isAuthenticated ? (
+          <li className="nav-item">
+            <Link to="/account" className="nav-link">
+              Account
+            </Link>
+          </li>
+        ) : (
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">
+              Login
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

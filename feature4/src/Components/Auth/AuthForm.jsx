@@ -1,65 +1,86 @@
 import React from "react";
+import './AuthForm.css';
 
 const AuthForm = ({ user, onChange, onSubmit, isLogin }) => {
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        {!isLogin && ( // Only show these fields if not in login mode
-          <>
-            <div>
-              <label>First Name</label>
-              <br />
-              <input
-                type="text"
-                value={user.firstName}
-                onChange={onChange}
-                name="firstName"
-                placeholder="First Name"
-                required
-              />
+    <div className="bookstore-auth-container">
+      <div className="bookstore-auth-card">
+        <div className="bookstore-auth-header">
+          <div className="bookstore-logo">📖</div>
+          <h1 className="bookstore-title">
+            {isLogin ? "Welcome Back" : "Join Nature's Library"}
+          </h1>
+          <p className="bookstore-subtitle">
+            {isLogin 
+              ? "Reconnect with the stories that shape your world" 
+              : "Begin your literary journey with us"}
+          </p>
+        </div>
+
+        <form onSubmit={onSubmit} className="bookstore-form">
+          {!isLogin && (
+            <div className="name-fields">
+              <div className="form-group">
+                <label htmlFor="firstName">First Name</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  value={user.firstName}
+                  onChange={onChange}
+                  name="firstName"
+                  placeholder="Enter your first name"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="lastName">Last Name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  value={user.lastName}
+                  onChange={onChange}
+                  name="lastName"
+                  placeholder="Enter your last name"
+                  required
+                />
+              </div>
             </div>
-            <div>
-              <label>Last Name</label>
-              <br />
-              <input
-                type="text"
-                value={user.lastName}
-                onChange={onChange}
-                name="lastName"
-                placeholder="Last Name"
-                required
-              />
-            </div>
-          </>
-        )}
-        <div>
-          <label>Email</label>
-          <br />
-          <input
-            type="email"
-            value={user.email}
-            onChange={onChange}
-            name="email"
-            placeholder="Email"
-            required
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <br />
-          <input
-            type="password"
-            value={user.password}
-            onChange={onChange}
-            name="password"
-            placeholder="Password"
-            required
-          />
-        </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+          )}
+          
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              value={user.email}
+              onChange={onChange}
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={user.password}
+              onChange={onChange}
+              name="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          
+          <button 
+            type="submit" 
+            className="bookstore-submit-button"
+          >
+            {isLogin ? "Enter My Library" : "Create My Account"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

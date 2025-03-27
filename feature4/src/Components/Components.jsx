@@ -5,21 +5,29 @@ import Navbar from "./Shared/Navbar";
 import { FavoritesProvider } from "../Context/FavoritesContext";
 import Home from "./Home/Home.jsx";
 import "../styles.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AuthModule from "./Auth/Auth.jsx";
 import AuthRegister from "./Auth/AuthRegister.jsx";
 import AuthLogin from "./Auth/AuthLogin.jsx";
 import ProtectedRoute from "../Common/Services/ProtectedRoute.jsx";
+import Account from "./Account/Account.jsx"
 
 export default function Components() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check if user is authenticated on app load
+    const authStatus = localStorage.getItem("isAuthenticated") === "true";
+    setIsAuthenticated(authStatus);
+  }, []);
+
   return (
     <FavoritesProvider>
       {" "}
       {/* wrap entire app with FavoritesProvider to make it connect */}
       <Router>
         <div>
-          <Navbar />
+          <Navbar isAuthenticated={isAuthenticated}/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/books/*" element={<Main />} />
@@ -27,7 +35,10 @@ export default function Components() {
             {/*<Route path="*" element={<Navigate to="/" replace />} />*/}
             <Route path="/auth" element={<AuthModule />} />
             <Route path="/register" element={<AuthRegister />} />
-            <Route path="/login" element={<AuthLogin />} />
+            <Route path="/login" element={<AuthLogin setIsAuthenticated={setIsAuthenticated} />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/account" element={<Account setIsAuthenticated={setIsAuthenticated}/>} />
+            </Route>
             {/*<Route element={<ProtectedRoute />} />
               <Route path="/home" element={<Home />} />
             </Route>*/}
