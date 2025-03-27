@@ -70,20 +70,6 @@ const Account = ({setIsAuthenticated}) => {
             <p>{userData.createdAt}</p>
           </div>
 
-          <div className="info-group">
-            <label>My Favorite Books</label>
-            {userData.favoriteBooks.length > 0 ? (
-              <div className="favorites-list">
-                {userData.favoriteBooks.map((book, index) => (
-                  <div key={index} className="favorite-book">
-                    {book.title}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p>No favorite books yet!</p>
-            )}
-          </div>
         </div>
 
         <div className="account-actions">
