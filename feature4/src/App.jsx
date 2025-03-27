@@ -5,6 +5,8 @@ import viteLogo from '/vite.svg'
 import Parse from "parse";
 import "./styles.css";
 import Components from "./Components/Components";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Env = {
     APPLICATION_ID: "mpQFAZaH0SLscTdKMSuBnatnNGS7FlZQBdB1HdY7",

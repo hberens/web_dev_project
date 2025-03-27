@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Lora:wght@400;600&display=swap');
+
+:root {
+  --primary-color: #3c4f3d;
+  --secondary-color: #6b7e63;
+  --background-color: #f5f5f0;
+  --accent-color: #4a6741;
+  --text-color: #2c3e50;
+  --form-background: #ffffff;
+}
+
+.bookstore-auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  font-family: 'Lora', serif;
+  padding: 2rem;
+}
+
+.bookstore-auth-card {
+  background-color: var(--form-background);
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  padding: 3.5rem;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.bookstore-auth-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.bookstore-logo {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.bookstore-title {
+  color: var(--primary-color);
+  font-family: 'Libre Baskerville', serif;
+  font-size: 2.25rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.bookstore-subtitle {
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.bookstore-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-fields {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.75rem;
+  flex: 1;
+}
+
+.form-group label {
+  color: var(--text-color);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.form-group input {
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Lora', serif;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(74, 103, 65, 0.1);
+}
+
+.bookstore-submit-button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  align-self: center;
+  width: calc(100% - 4rem);
+}
+
+.bookstore-submit-button:hover {
+  background-color: #3d5a36;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 700px) {
+  .bookstore-auth-card {
+    max-width: 100%;
+    padding: 2.5rem 2rem;
+  }
+
+  .name-fields {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .bookstore-title {
+    font-size: 1.9rem;
+  }
+
+  .bookstore-submit-button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,49 @@
+/* Add these new styles to your existing AuthForm.css */
+
+.account-info {
+    margin: 2rem 0;
+  }
+  
+  .info-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .info-group label {
+    display: block;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .info-group p {
+    margin: 0;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .favorites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .favorite-book {
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+  }
+  
+  .account-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .bookstore-submit-button.logout {
+    background-color: #dc3545;
+  }
+  
+  .bookstore-submit-button.logout:hover {
+    background-color: #c82333;
+  }

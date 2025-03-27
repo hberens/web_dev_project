@@ -17,7 +17,7 @@ const BookItem = ({ book, commentData, onInputChange, onSubmitComment, onDeleteC
 
       {/* Conditionally Render "Show More Details" Button */}
       {showDetailsButton && (
-        <button onClick={toggleDetails}>
+        <button onClick={toggleDetails} className="details-button">
           {showMoreDetails ? "Show Less Details" : "Show More Details"}
         </button>
       )}
@@ -25,7 +25,7 @@ const BookItem = ({ book, commentData, onInputChange, onSubmitComment, onDeleteC
       {/* Conditional rendering of additional details */}
       {showMoreDetails && (
         <div className="more-details">
-          <p>Subtitle: {book.subtitle}</p>
+          {book.subtitle && <p>Subtitle: {book.subtitle}</p>}
           <p>Number of Pages: {book.num_pages}</p>
           <small>Published in {book.year}</small>
         </div>
