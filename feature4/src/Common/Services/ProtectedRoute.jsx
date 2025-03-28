@@ -10,16 +10,10 @@ const ProtectedRoute = () => {
 export default ProtectedRoute;
 */
 import { Navigate, Outlet } from "react-router-dom";
-import Parse from "parse";
+import { isAuthenticated } from "../../Components/Auth/AuthService";
 
 const ProtectedRoute = () => {
-  // Check both Parse authentication and localStorage
-  const isAuthenticated = Parse.User.current() && 
-                         Parse.User.current().authenticated() && 
-                         localStorage.getItem("isAuthenticated") === "true";
-
-  // If not authenticated, redirect to login page
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
+  return isAuthenticated() ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default ProtectedRoute;
