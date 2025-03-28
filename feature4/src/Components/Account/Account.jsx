@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Parse from 'parse';
+import { logoutUser, getCurrentUser } from "../Auth/AuthService";
 import './Account.css';
-import { logoutUser } from "../Auth/AuthService";
 
 const Account = ({setIsAuthenticated}) => {
   const navigate = useNavigate();
@@ -14,17 +13,13 @@ const Account = ({setIsAuthenticated}) => {
   });
 
   useEffect(() => {
-    const getCurrentUser = async () => {
+    const loadUserData = async () => {
       try {
-        const currentUser = Parse.User.current();
-        if (currentUser) {
-          // Get user's favorite books from localStorage
+        const user = await getCurrentUser();
+        if (user) {
           const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-          
           setUserData({
-            username: currentUser.get('username'),
-            email: currentUser.get('email'),
-            createdAt: currentUser.get('createdAt').toLocaleDateString(),
+            ...user,
             favoriteBooks: favorites
           });
         }
@@ -33,13 +28,12 @@ const Account = ({setIsAuthenticated}) => {
       }
     };
 
-    getCurrentUser();
+    loadUserData();
   }, []);
 
   const handleLogout = async () => {
     try {
-      await logoutUser();  // Use the service function
-      localStorage.removeItem('isAuthenticated');
+      await logoutUser();
       setIsAuthenticated(false);
       navigate('/login');
     } catch (error) {

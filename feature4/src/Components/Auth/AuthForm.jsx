@@ -8,11 +8,11 @@ const AuthForm = ({ user, onChange, onSubmit, isLogin }) => {
         <div className="bookstore-auth-header">
           <div className="bookstore-logo">📖</div>
           <h1 className="bookstore-title">
-            {isLogin ? "Welcome Back" : "Join Nature's Library"}
+            {isLogin ? "Welcome Back" : "Join Our Library"}
           </h1>
           <p className="bookstore-subtitle">
             {isLogin 
-              ? "Reconnect with the stories that shape your world" 
+              ? "Reconnect with stories! Login to your digital library!" 
               : "Begin your literary journey with us"}
           </p>
         </div>

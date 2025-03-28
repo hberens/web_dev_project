@@ -18,21 +18,13 @@ const AuthLogin = ({ setIsAuthenticated }) => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      const loggedInUser = await loginUser(user);  // Use the service function
+      const loggedInUser = await loginUser(user);
       setIsAuthenticated(true);
-      localStorage.setItem("isAuthenticated", "true");
       alert(`Welcome back, ${loggedInUser.get("username")}!`);
       navigate("/");
     } catch (error) {
       alert(error.message);
     }
-  };
-
-
-  const handleLogout = async () => {
-    await Parse.User.logOut();
-    localStorage.removeItem("isAuthenticated");
-    navigate("/login");
   };
 
   return (
