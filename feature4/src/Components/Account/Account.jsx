@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Parse from 'parse';
+import { logoutUser, getCurrentUser } from "../Auth/AuthService";
 import './Account.css';
 
 const Account = ({setIsAuthenticated}) => {
@@ -13,17 +13,13 @@ const Account = ({setIsAuthenticated}) => {
   });
 
   useEffect(() => {
-    const getCurrentUser = async () => {
+    const loadUserData = async () => {
       try {
-        const currentUser = Parse.User.current();
-        if (currentUser) {
-          // Get user's favorite books from localStorage
+        const user = await getCurrentUser();
+        if (user) {
           const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-          
           setUserData({
-            username: currentUser.get('username'),
-            email: currentUser.get('email'),
-            createdAt: currentUser.get('createdAt').toLocaleDateString(),
+            ...user,
             favoriteBooks: favorites
           });
         }
@@ -32,14 +28,13 @@ const Account = ({setIsAuthenticated}) => {
       }
     };
 
-    getCurrentUser();
+    loadUserData();
   }, []);
 
   const handleLogout = async () => {
     try {
-      await Parse.User.logOut();
-      localStorage.removeItem('isAuthenticated');
-      setIsAuthenticated(false); // Now this will work
+      await logoutUser();
+      setIsAuthenticated(false);
       navigate('/login');
     } catch (error) {
       console.error('Error logging out:', error);
@@ -70,20 +65,6 @@ const Account = ({setIsAuthenticated}) => {
             <p>{userData.createdAt}</p>
           </div>
 
-          <div className="info-group">
-            <label>My Favorite Books</label>
-            {userData.favoriteBooks.length > 0 ? (
-              <div className="favorites-list">
-                {userData.favoriteBooks.map((book, index) => (
-                  <div key={index} className="favorite-book">
-                    {book.title}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p>No favorite books yet!</p>
-            )}
-          </div>
         </div>
 
         <div className="account-actions">
