@@ -4,7 +4,7 @@ export const createComment = async (objectId, commentText, username) => {
   try {
     console.log(`Adding comment to book ${objectId}:`, commentText);
     // fetch the book object to use as a pointer
-    const Books = Parse.Object.extend("Books");
+    const Books = Parse.Object.extend("NewBooks");
     const bookQuery = new Parse.Query(Books);
     const book = await bookQuery.get(objectId);
 
@@ -31,7 +31,7 @@ export const createComment = async (objectId, commentText, username) => {
 // READ operation for the comments - read the comments in the backend for each book
 export const getCommentsForBook = async (objectId) => {
   try {
-    const Books = Parse.Object.extend("Books");
+    const Books = Parse.Object.extend("NewBooks");
     const bookQuery = new Parse.Query(Books);
     const book = await bookQuery.get(objectId);
 
