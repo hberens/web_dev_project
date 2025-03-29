@@ -11,6 +11,7 @@ import AuthRegister from "./Auth/AuthRegister.jsx";
 import AuthLogin from "./Auth/AuthLogin.jsx";
 import ProtectedRoute from "../Common/Services/ProtectedRoute.jsx";
 import Account from "./Account/Account.jsx"
+import AuthRoute from "../Common/Services/AuthRoute.jsx";
 
 export default function Components() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -33,9 +34,11 @@ export default function Components() {
             <Route path="/books/*" element={<Main />} />
             <Route path="/favorites" element={<Favorites />} />
             {/*<Route path="*" element={<Navigate to="/" replace />} />*/}
-            <Route path="/auth" element={<AuthModule />} />
-            <Route path="/register" element={<AuthRegister />} />
-            <Route path="/login" element={<AuthLogin setIsAuthenticated={setIsAuthenticated} />} />
+            <Route element={<AuthRoute />}>
+              <Route path="/auth" element={<AuthModule />} />
+              <Route path="/register" element={<AuthRegister />} />
+              <Route path="/login" element={<AuthLogin setIsAuthenticated={setIsAuthenticated} />} />
+            </Route>
             <Route element={<ProtectedRoute />}>
               <Route path="/account" element={<Account setIsAuthenticated={setIsAuthenticated}/>} />
             </Route>
