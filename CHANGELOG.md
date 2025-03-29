@@ -1,6 +1,18 @@
 Change Log
 All notable changes to this project will be documented in this file.
 
+# v0.3.0 - 2025-03-027 </br>
+## Added
+- Added user authentication through an "Auth" component
+- User can now register for an account, login to an existing account, and logout of an existing account.
+- Created protected routes to prevent unauthorized users from accessing certain pages. </br> </br>
+## Changed 
+- Changed the backend data to hold more books and information about the books including title, number of pages, genre, author, average rating, and number of ratings.
+- Changed our Parse queries to ensure that comments properly add the the back4app database and persist through sessions.</br> </br>
+## Fixed 
+- Parse modules issues and incosistent updates between the backend and the frontend.
+- Fixed persistence among sessions so that all comments appear on each login.
+
 # v0.2.0 - 2025-03-04 </br>
 ## Added
 - Created "Books" and "Comment" Classes for Parse modules
