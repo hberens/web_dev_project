@@ -4,10 +4,13 @@ All notable changes to this project will be documented in this file.
 ## Added
 - Added user authentication through an "Auth" component
 - User can now register for an account, login to an existing account, and logout of an existing account.
+- User interfact changes based on whether the user is logged in or not. Added and Account page for logged in users. 
 - Created protected routes to prevent unauthorized users from accessing certain pages. </br> </br>
+- Added responsive design to the navigation bar. 
 ## Changed 
-- Changed the backend data to hold more books and information about the books including title, number of pages, genre, author, average rating, and number of ratings.
-- Changed our Parse queries to ensure that comments properly add the the back4app database and persist through sessions.</br> </br>
+- Changed the backend data to hold more books and information about the books including title, number of pages, genre, author, average rating, and number of ratings. Now we are using a Class called "NewBooks"
+- Changed our Parse queries to ensure that comments properly add the the back4app database and persist through sessions.
+- Changed the set up of the favorites page and it's user interface / appearance </br> </br>
 ## Fixed 
 - Parse modules issues and incosistent updates between the backend and the frontend.
 - Fixed persistence among sessions so that all comments appear on each login.
