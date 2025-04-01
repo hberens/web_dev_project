@@ -5,8 +5,8 @@ All notable changes to this project will be documented in this file.
 - Added user authentication through an "Auth" component
 - User can now register for an account, login to an existing account, and logout of an existing account.
 - User interfact changes based on whether the user is logged in or not. Added and Account page for logged in users. 
-- Created protected routes to prevent unauthorized users from accessing certain pages. </br> </br>
-- Added responsive design to the navigation bar. 
+- Created protected routes to prevent unauthorized users from accessing certain pages. 
+- Added responsive design to the navigation bar. </br> </br>
 ## Changed 
 - Changed the backend data to hold more books and information about the books including title, number of pages, genre, author, average rating, and number of ratings. Now we are using a Class called "NewBooks"
 - Changed our Parse queries to ensure that comments properly add the the back4app database and persist through sessions.
