@@ -2,7 +2,6 @@ import React from "react";
 import "../../styles.css"
 
 const CommentSection = ({ comments, commentData, onInputChange, onSubmitComment, onDeleteComment, bookId }) => {
-  //console.log("Rendering CommentSection for book:", bookId);
   return (
     <div className="comments-section">
       <h4>Comments:</h4>

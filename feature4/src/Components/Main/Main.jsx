@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAllBooks } from "/src/Common/Services/BookService";
-import BookList from "../Books/BookList";  // Updated import
+import BookList from "../Books/BookList";
 import Favorites from "../Favorites/Favorites";
 import { createComment, deleteComment } from "../../Common/Services/CommentService";
 import { Routes, Route } from "react-router-dom";

@@ -37,6 +37,7 @@ const Navbar = ({ isAuthenticated }) => {
             Favorites
           </Link>
         </li>
+        {/* if they are logged in display an ccount page  */}
         {isAuthenticated ? (
           <li className="nav-item">
             <Link to="/account" className="nav-link">
