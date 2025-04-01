@@ -29,13 +29,13 @@ const CommentSection = ({ comments, commentData, onInputChange, onSubmitComment,
       <input
         type="text"
         placeholder="Your name"
-        value={commentData.username}
+        value={commentData?.username || ""}
         onChange={(e) => onInputChange(bookId, "username", e.target.value)}
       />
       <input
         type="text"
         placeholder="Add a comment..."
-        value={commentData.text}
+        value={commentData?.text || ""}
         onChange={(e) => onInputChange(bookId, "text", e.target.value)}
       />
       <button onClick={() => onSubmitComment(bookId)}>Comment</button>
