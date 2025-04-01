@@ -1,6 +1,6 @@
 Change Log
 All notable changes to this project will be documented in this file.
-# v0.3.0 - 2025-03-027 </br>
+# v0.3.0 - 2025-03-27 </br>
 ## Added
 - Added user authentication through an "Auth" component
 - User can now register for an account, login to an existing account, and logout of an existing account.
