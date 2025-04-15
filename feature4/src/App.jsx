@@ -6,6 +6,8 @@ import Parse from "parse";
 import "./styles.css";
 import Components from "./Components/Components";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import SearchComponent from './Components/Search/SearchComponent';
 
 
 const Env = {
@@ -18,7 +20,12 @@ Parse.initialize(Env.APPLICATION_ID, Env.JAVASCRIPT_KEY);
 Parse.serverURL = Env.SERVER_URL;
 
 function App() {
-  return <Components />;
+  return (
+  <div>
+    <Components />
+    <SearchComponent />
+    </div>
+  );
 }
 
 export default App
