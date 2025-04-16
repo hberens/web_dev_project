@@ -7,7 +7,7 @@ import "./styles.css";
 import Components from "./Components/Components";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import SearchComponent from './Components/Search/SearchComponent';
+// import SearchComponent from './Components/Search/SearchComponent';
 
 
 const Env = {
@@ -23,7 +23,7 @@ function App() {
   return (
   <div>
     <Components />
-    <SearchComponent />
+    {/* <SearchComponent /> */}
     </div>
   );
 }

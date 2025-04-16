@@ -6,11 +6,15 @@ import { createComment, deleteComment } from "../../Common/Services/CommentServi
 import { Routes, Route } from "react-router-dom";
 import { useFavorites } from "../../Context/FavoritesContext";
 import "../../styles.css";
+import BookSearch from "../Books/BookSearch"; 
 
 const Main = () => {
   const [books, setBooks] = useState([]);
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const { favorites, toggleFavorite } = useFavorites();
+
+  // State to toggle between full list and search view
+  const [showSearch, setShowSearch] = useState(false);
 
   // Fetch all the books
   useEffect(() => {
@@ -86,29 +90,56 @@ const Main = () => {
       console.error("Failed to delete comment:", error);
     }
   };
-
   return (
     <div>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              {errorMessage && <div className="error">{errorMessage}</div>}
-              <BookList
-                books={books}
-                onAddComment={handleAddComment}
-                onDeleteComment={handleDeleteComment}
-                favorites={favorites}
-                toggleFavorite={toggleFavorite}
-              />
-            </>
-          }
+      {/* Toggle button to switch between search and full list */}
+      <button 
+        onClick={() => setShowSearch((prev) => !prev)}
+        style={{ margin: "1rem", padding: "0.5rem 1rem" }}
+      >
+        {showSearch ? "Show All Books" : "Search Books"}
+      </button>
+
+      {errorMessage && <div className="error">{errorMessage}</div>}
+
+      {/* Conditionally render the search component or the complete book list */}
+      {showSearch ? (
+        <BookSearch />
+      ) : (
+        <BookList 
+          books={books}
+          favorites={favorites}
+          toggleFavorite={toggleFavorite}
         />
-        <Route path="/favorites" element={<Favorites favorites={favorites} />} />
-      </Routes>
+      )}
     </div>
   );
 };
 
 export default Main;
+
+//   return (
+//     <div>
+//       <Routes>
+//         <Route
+//           path="/"
+//           element={
+//             <>
+//               {errorMessage && <div className="error">{errorMessage}</div>}
+//               <BookList
+//                 books={books}
+//                 onAddComment={handleAddComment}
+//                 onDeleteComment={handleDeleteComment}
+//                 favorites={favorites}
+//                 toggleFavorite={toggleFavorite}
+//               />
+//             </>
+//           }
+//         />
+//         <Route path="/favorites" element={<Favorites favorites={favorites} />} />
+//       </Routes>
+//     </div>
+//   );
+// };
+
+//export default Main;

@@ -37,6 +37,11 @@ const Navbar = ({ isAuthenticated }) => {
             Favorites
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/search" className="nav-link">
+            Search Books
+          </Link>
+        </li>
         {isAuthenticated ? (
           <li className="nav-item">
             <Link to="/account" className="nav-link">
@@ -49,6 +54,7 @@ const Navbar = ({ isAuthenticated }) => {
               Login
             </Link>
           </li>
+          
         )}
       </ul>
     </nav>
