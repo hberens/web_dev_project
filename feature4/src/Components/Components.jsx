@@ -31,7 +31,7 @@ export default function Components() {
         <div>
           <Navbar isAuthenticated={isAuthenticated}/>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home isAuthenticated={isAuthenticated} />} />
             <Route path="/books/*" element={<Main />} />
             <Route path="/books/search" element={<BookSearch />} />
             <Route path="/favorites" element={<Favorites />} />

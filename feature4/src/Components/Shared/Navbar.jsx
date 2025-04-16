@@ -38,7 +38,7 @@ const Navbar = ({ isAuthenticated }) => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/search" className="nav-link">
+          <Link to="/books/search" className="nav-link">
             Search Books
           </Link>
         </li>
