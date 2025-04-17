@@ -30,6 +30,7 @@ const BookItem = ({
     }
   }, [storageKey]);
 
+  // this function handles the rating change made by the user
   const handleRatingChange = (rating) => {
     const updatedRatings = [...userRatings, rating];
     setUserRatings(updatedRatings);
@@ -37,7 +38,7 @@ const BookItem = ({
     localStorage.setItem(storageKey, JSON.stringify(updatedRatings));
   };
 
-  // Compute user average
+  // compute user average
   const userAverage =
     userRatings.length > 0
       ? (userRatings.reduce((a, b) => a + b, 0) / userRatings.length).toFixed(2)
@@ -63,7 +64,7 @@ const BookItem = ({
           </small>
         </div>
       )}
-
+    {/* added this section to use the star rating */}
       <div className="rating-section">
         <StarRating
           currentRating={userRating || 0}

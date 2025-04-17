@@ -36,7 +36,7 @@ export const getAllBooks = async () => {
 
     const formattedData = results.map((book) => ({
       id: book.id,
-      title: book.get("title"),
+      title: book.get("title") || "N/A",
       subtitle: book.get("subtitle"),
       author: book.get("authors"),
       genre: book.get("categories"),
