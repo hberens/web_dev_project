@@ -449,7 +449,7 @@ nav {
 }
 .star-rating {
   font-size: 24px;
-  color: gray;
+  color: rgb(250, 231, 231);
   cursor: pointer;
 }
 

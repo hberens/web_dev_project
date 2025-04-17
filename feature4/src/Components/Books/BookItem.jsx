@@ -1,47 +1,86 @@
-import React from "react";
-import { useState } from "react";
-import CommentSection from "../Comments/CommentSection"; // Import CommentSection
-import StarRating from "../Star/StarRating"; // for the star rating part
-import "../../styles.css"
+import React, { useState, useEffect } from "react";
+import CommentSection from "../Comments/CommentSection";
+import StarRating from "../Star/StarRating";
+import "../../styles.css";
 
-const BookItem = ({ book, commentData, onInputChange, onSubmitComment, onDeleteComment, isFavorite, toggleFavorite, showMoreDetails, toggleDetails, showComments, showDetailsButton, onAddRating } ) => {
-  const [userRating, setUserRating] = useState(null); // Store user rating here
+const BookItem = ({
+  book,
+  commentData,
+  onInputChange,
+  onSubmitComment,
+  onDeleteComment,
+  isFavorite,
+  toggleFavorite,
+  showMoreDetails,
+  toggleDetails,
+  showComments,
+  showDetailsButton
+}) => {
+  const storageKey = `userRatings-${book.id}`; // i'm doing this so that we persist using local storage 
+
+  const [userRatings, setUserRatings] = useState([]);
+  const [userRating, setUserRating] = useState(null);
+
+  // Load ratings from localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem(storageKey);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      setUserRatings(parsed);
+    }
+  }, [storageKey]);
 
   const handleRatingChange = (rating) => {
+    const updatedRatings = [...userRatings, rating];
+    setUserRatings(updatedRatings);
     setUserRating(rating);
-    book.average_rating = Number(((book.average_rating*book.num_ratings) + rating) / (book.num_ratings + 1)).toFixed(2);
-    console.log(book.average_rating);
-    //onAddRating(book.id, book.average_rating); // Call onAddRating to update the average
+    localStorage.setItem(storageKey, JSON.stringify(updatedRatings));
   };
+
+  // Compute user average
+  const userAverage =
+    userRatings.length > 0
+      ? (userRatings.reduce((a, b) => a + b, 0) / userRatings.length).toFixed(2)
+      : null;
 
   return (
     <div className="book-item">
       <strong>
         <i>{book.title}</i>
-      </strong> by {book.author}
+      </strong>{" "}
+      by {book.author}
       <br />
       <small>Genre: {book.genre}</small>
-      <small> Average Rating: {book.average_rating} out of {book.num_ratings} ratings</small>
+      <br />
+      <small>
+        Original Dataset Rating: {book.average_rating} out of {book.num_ratings} ratings
+      </small>
+      {userAverage && (
+        <div>
+          <small>
+            User Submitted Avg: {userAverage} from {userRatings.length} rating
+            {userRatings.length > 1 ? "s" : ""}
+          </small>
+        </div>
+      )}
 
       <div className="rating-section">
         <StarRating
-          currentRating={userRating || book.average_rating} // Show the current rating (or the average rating)
+          currentRating={userRating || 0}
           onRatingChange={handleRatingChange}
         />
-      </div> 
+      </div>
 
       <div className="description-container">
         <p className="description">{book.description}</p>
       </div>
 
-      {/* Conditionally Render "Show More Details" Button */}
       {showDetailsButton && (
         <button onClick={toggleDetails} className="details-button">
           {showMoreDetails ? "Show Less Details" : "Show More Details"}
         </button>
       )}
 
-      {/* Conditional rendering of additional details */}
       {showMoreDetails && (
         <div className="more-details">
           {book.subtitle && <p>Subtitle: {book.subtitle}</p>}
@@ -50,7 +89,6 @@ const BookItem = ({ book, commentData, onInputChange, onSubmitComment, onDeleteC
         </div>
       )}
 
-      {/* Display Comments */}
       {showComments && (
         <CommentSection
           comments={book.comments}
@@ -62,7 +100,6 @@ const BookItem = ({ book, commentData, onInputChange, onSubmitComment, onDeleteC
         />
       )}
 
-      {/* Favorite Button */}
       <button
         className={`favorite-button ${isFavorite ? "pink" : "gray"}`}
         onClick={() => toggleFavorite(book)}
