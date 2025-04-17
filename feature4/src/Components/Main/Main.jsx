@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { getAllBooks } from "/src/Common/Services/BookService";
 import BookList from "../Books/BookList";
 import Favorites from "../Favorites/Favorites";
@@ -11,6 +11,7 @@ const Main = () => {
   const [books, setBooks] = useState([]);
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const { favorites, toggleFavorite } = useFavorites();
+  const [sortBy, setSortBy] = useState(""); // add the sorting feature
 
   // Fetch all the books
   useEffect(() => {
@@ -87,6 +88,18 @@ const Main = () => {
     }
   };
 
+  const sortedBooks = useMemo(() => {
+    const sorted = [...books];
+    if (sortBy === "rating") {
+      sorted.sort((a, b) => b.average_rating - a.average_rating);
+    } else if (sortBy === "title") {
+      sorted.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortBy === "year") {
+      sorted.sort((a, b) => b.year - a.year);
+    }
+    return sorted;
+  }, [books, sortBy]);
+
   return (
     <div>
       <Routes>
@@ -95,8 +108,23 @@ const Main = () => {
           element={
             <>
               {errorMessage && <div className="error">{errorMessage}</div>}
+
+              <div className="sort-container">
+                <label htmlFor="sort">Sort by:</label>
+                <select
+                  id="sort"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                >
+                  <option value="">-- Select --</option>
+                  <option value="rating">Rating (High to Low)</option>
+                  <option value="title">Title (A to Z)</option>
+                  <option value="year">Year (Newest to Oldest)</option>
+                </select>
+              </div>
+
               <BookList
-                books={books}
+                books={sortedBooks}
                 onAddComment={handleAddComment}
                 onDeleteComment={handleDeleteComment}
                 favorites={favorites}

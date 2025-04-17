@@ -415,6 +415,40 @@ nav {
   background-color: #043f3d;
 }
 
+.sort-container {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sort-container label {
+  font-weight: 500;
+  color: #333;
+}
+
+.sort-container select {
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #593926;
+  color: white;
+  transition: border-color 0.2s ease;
+}
+
+.sort-container select:hover {
+  border-color: #666;
+  cursor: pointer;
+}
+
+.sort-container select:focus {
+  outline: none;
+  border-color: #0b3821;
+  box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+}
+
+
 h1 {
   text-align: center;
 }
