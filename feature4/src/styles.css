@@ -447,6 +447,23 @@ nav {
   border-color: #0b3821;
   box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
 }
+.star-rating {
+  font-size: 24px;
+  color: gray;
+  cursor: pointer;
+}
+
+.star-rating .filled {
+  color: gold;
+}
+
+.star-rating span:hover {
+  color: yellow;
+}
+
+.star-rating span:active {
+  color: orange;
+}
 
 
 h1 {
