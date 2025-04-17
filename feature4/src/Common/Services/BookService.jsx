@@ -39,12 +39,12 @@ export const getAllBooks = async () => {
       title: book.get("title") || "N/A",
       subtitle: book.get("subtitle"),
       author: book.get("authors") || "N/A",
-      genre: book.get("categories"),
-      average_rating: book.get("average_rating"),
-      description: book.get("description"),
-      year: book.get("published_year"),
-      num_pages: book.get("num_pages"),
-      num_ratings: book.get("ratings_count"),
+      genre: book.get("categories")  || "N/A",
+      average_rating: book.get("average_rating") || "N/A",
+      description: book.get("description") || "N/A",
+      year: book.get("published_year") || "N/A",
+      num_pages: book.get("num_pages") || "N/A",
+      num_ratings: book.get("ratings_count") || "N/A",
       comments: commentsByBook[book.id] || [],
     }));
 
