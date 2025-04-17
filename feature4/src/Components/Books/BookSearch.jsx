@@ -1,6 +1,18 @@
 // BookSearch.jsx
 import React from 'react';
-import { InstantSearch, SearchBox, Hits, Highlight, Configure } from 'react-instantsearch-dom';
+//import { InstantSearch, SearchBox, Hits, Highlight, Pagination, Configure } from 'react-instantsearch-dom';
+import {
+  InstantSearch,
+  SearchBox,
+  Hits,
+  Highlight,
+  Pagination,
+  Configure,
+  RefinementList,
+  RangeInput,        // for numeric ranges
+  //SearchableRefinementList, // for searchable facets
+} from 'react-instantsearch-dom';
+
 import algoliasearch from 'algoliasearch/lite';
 
 const searchClient = algoliasearch(
@@ -21,6 +33,7 @@ const BookHit = ({ hit }) => (
     </p>
     <p>{hit.description}</p>
   </div>
+  
 );
 
 const BookSearch = () => (
@@ -29,9 +42,16 @@ const BookSearch = () => (
     <InstantSearch
       indexName={import.meta.env.VITE_ALGOLIA_INDEX_NAME || "list_books"}
       searchClient={searchClient}
+      // ← this prevents the initial empty‐query from firing
+      searchFunction={(helper) => {
+        if (!helper.state.query) {
+          return;
+        }
+        helper.search();
+      }}
     >
       {/* Optionally configure some search parameters */}
-      <Configure hitsPerPage={10} />
+      <Configure hitsPerPage={30} />
       <SearchBox />
       <Hits hitComponent={BookHit} />
     </InstantSearch>
