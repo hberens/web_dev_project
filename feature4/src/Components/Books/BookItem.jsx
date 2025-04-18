@@ -3,16 +3,25 @@ import CommentSection from "../Comments/CommentSection"; // Import CommentSectio
 import "../../styles.css"
 
 const BookItem = ({ book, commentData, onInputChange, onSubmitComment, onDeleteComment, isFavorite, toggleFavorite, showMoreDetails, toggleDetails, showComments, showDetailsButton } ) => {
+  // Local fallbacks
+  const author       = book.author       ?? "Unknown";
+  const genre        = book.genre        ?? "Unknown";
+  const avgRating    = book.average_rating ?? "N/A";
+  const numRatings   = book.num_ratings  ?? "N/A";
+  const year         = book.year        ?? "Unknown";
+  const title        = book.title ?? "Unknown";
+  const description  = book.description ?? "No description available.";
+
   return (
     <div className="book-item">
       <strong>
         <i>{book.title}</i>
-      </strong> by {book.author}
+      </strong> by {author}
       <br />
-      <small>Genre: {book.genre}</small>
-      <small> Average Rating: {book.average_rating} out of {book.num_ratings} ratings</small>
+      <small>Genre: {genre}</small>
+      <small> Average Rating: {avgRating} out of {numRatings} ratings</small>
       <div className="description-container">
-        <p className="description">{book.description}</p>
+        <p className="description">{description}</p>
       </div>
 
       {/* Conditionally Render "Show More Details" Button */}

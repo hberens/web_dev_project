@@ -5,6 +5,7 @@ import {
   SearchBox,
   Configure,
   connectStateResults,
+  Pagination,
 } from 'react-instantsearch-dom';
 import algoliasearch from 'algoliasearch/lite';
 import BookList from './BookList';
@@ -50,16 +51,23 @@ export default function BookSearch({
       
 
       return (
-        <div className="book-list">
-          <div className="book-container">
-            <BookList
-              books={uniqueBooks}
-              onAddComment={onAddComment}
-              onDeleteComment={onDeleteComment}
-              showHeader={false} // don't show the header again on the search page
-            />
+        <>
+          <div className="book-list">
+            <div className="book-container">
+              <BookList
+                books={uniqueBooks}
+                onAddComment={onAddComment}
+                onDeleteComment={onDeleteComment}
+                showHeader={false} // don't show the header again on the search page
+              />
+            </div>
           </div>
-        </div>
+
+          {/* Pagination controls */}
+          <div className="search-pagination">
+            <Pagination showFirst={false} showLast={false} />
+          </div>
+        </>
       );
     }
   );
@@ -77,7 +85,7 @@ export default function BookSearch({
           }
         }}
       >
-        <Configure hitsPerPage={12} />
+        <Configure hitsPerPage={15} distinct={true}  />
 
         <div className="search-container">
           <SearchBox />
