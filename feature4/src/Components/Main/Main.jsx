@@ -5,7 +5,8 @@ import Favorites from "../Favorites/Favorites";
 import { createComment, deleteComment } from "../../Common/Services/CommentService";
 import { Routes, Route } from "react-router-dom";
 import { useFavorites } from "../../Context/FavoritesContext";
-import "../../styles.css";
+//import "../../styles.css";
+import "./Main.css"
 import BookSearch from "../Books/BookSearch"; 
 
 const Main = () => {
@@ -31,13 +32,27 @@ const Main = () => {
         return;
       }
 
+      // Build a Map keyed by title, merging comments for duplicates
+      const byTitle = new Map();
+      fetched.forEach(book => {
+        if (byTitle.has(book.title)) {
+          // Merge comments arrays
+          const existing = byTitle.get(book.title);
+          existing.comments = [
+            ...existing.comments,
+            ...book.comments.filter(c => 
+              !existing.comments.some(ec => ec.id === c.id)
+            )
+          ];
+        } else {
+          // Clone the book so we don't mutate the original fetched item
+          byTitle.set(book.title, { ...book });
+        }
+      });
+
       // Deduplicate by `id` (keeps the first occurrence of each book.id):
-      const uniqueBooks = Array.from(
-        new Map(fetched.map(book => [book.title, book])).values()
-      );
-
+      const uniqueBooks = Array.from(byTitle.values());
       setBooks(uniqueBooks);
-
     }).catch(error => {
       setErrorMessage("Failed to load books.");
       console.error("Error fetching books:", error);
@@ -133,12 +148,11 @@ const Main = () => {
   return (
     <div>
       {/* Toggle button to switch between search and full list */}
-      <button 
+      {/* <button className="search-toggle-button"
         onClick={() => setShowSearch((prev) => !prev)}
-        style={{ margin: "1rem", padding: "0.5rem 1rem" }}
       >
         {showSearch ? "Show All Books" : "Search Books"}
-      </button>
+      </button> */}
 
       {errorMessage && <div className="error">{errorMessage}</div>}
 
@@ -155,6 +169,8 @@ const Main = () => {
             books={currentBooks}
             onAddComment={handleAddComment}
             onDeleteComment={handleDeleteComment}
+            showHeader={true}
+            onSearchClick={() => setShowSearch(true)}
           />
 
           {/* Full‐list pagination controls */}
@@ -186,29 +202,3 @@ const Main = () => {
 };
 
 export default Main;
-
-//   return (
-//     <div>
-//       <Routes>
-//         <Route
-//           path="/"
-//           element={
-//             <>
-//               {errorMessage && <div className="error">{errorMessage}</div>}
-//               <BookList
-//                 books={books}
-//                 onAddComment={handleAddComment}
-//                 onDeleteComment={handleDeleteComment}
-//                 favorites={favorites}
-//                 toggleFavorite={toggleFavorite}
-//               />
-//             </>
-//           }
-//         />
-//         <Route path="/favorites" element={<Favorites favorites={favorites} />} />
-//       </Routes>
-//     </div>
-//   );
-// };
-
-//export default Main;
