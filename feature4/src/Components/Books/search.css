@@ -1,62 +1,34 @@
-/* Center the search box */
+/* src/Components/Books/search.css */
+
+/* Space out the page */
+.search-page {
+  padding: 2rem 1rem;
+}
+
+/* Center and style the heading */
+.search-page h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #0b3821;
+}
+
+/* Center the Algolia search box */
 .search-container {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-  }
-  
-  /* Turn the Hits <ul> into your flex grid */
-  .ais-Hits-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center; /* center the rows */
-  }
-  
-  /* Make each <li> a flex‐item that matches your .book-item breakpoints */
-  .ais-Hits-item {
-    flex: 0 1 100%;
-    max-width: 100%;
-  }
-  
-  /* Small devices (2 columns) */
-  @media (min-width: 481px) {
-    .ais-Hits-item {
-      flex: 0 1 calc(50% - 20px);
-      max-width: calc(50% - 20px);
-    }
-  }
-  
-  /* Medium devices (3 columns) */
-  @media (min-width: 768px) {
-    .ais-Hits-item {
-      flex: 0 1 calc(33.333% - 20px);
-      max-width: calc(33.333% - 20px);
-    }
-  }
-  
-  /* Large devices (4 columns) */
-  @media (min-width: 900px) {
-    .ais-Hits-item {
-      flex: 0 1 calc(25% - 20px);
-      max-width: calc(25% - 20px);
-    }
-  }
-  
-  /* Extra large devices (5 columns) */
-  @media (min-width: 1024px) {
-    .ais-Hits-item {
-      flex: 0 1 calc(20% - 20px);
-      max-width: calc(20% - 20px);
-    }
-  }
-  
-  /* Ensure your BookItem fills its <li> */
-  .ais-Hits-item > .book-item {
-    width: 100%;
-    height: 100%;
-  }
-  
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+/* (Optional) tweak the input size */
+.search-container .ais-SearchBox-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Remove any leftover list styling */
+.ais-Hits-list,
+.ais-Hits-item {
+  all: unset;   /* clear out any A‑isles defaults */
+}

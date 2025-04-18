@@ -18,13 +18,21 @@ const Main = () => {
 
   // Fetch all the books
   useEffect(() => {
-    getAllBooks().then((books) => {
-      console.log("Fetched books:", books);
-      if (Array.isArray(books)) {
-        setBooks(books);
-      } else {
-        console.error("Invalid book data format:", books);
+    getAllBooks().then((fetched) => {
+      console.log("Fetched books:", fetched);
+      // invalid array of books 
+      if (!Array.isArray(fetched)) {
+        console.error("Invalid book data format:", fetched);
+        return;
       }
+
+    // Deduplicate by `id` (keeps the first occurrence of each book.id):
+    const uniqueBooks = Array.from(
+      new Map(fetched.map(book => [book.title, book])).values()
+    );
+
+    setBooks(uniqueBooks);
+
     }).catch(error => {
       setErrorMessage("Failed to load books.");
       console.error("Error fetching books:", error);
@@ -104,12 +112,16 @@ const Main = () => {
 
       {/* Conditionally render the search component or the complete book list */}
       {showSearch ? (
-        <BookSearch />
+        <BookSearch
+          books={books}
+          onAddComment={handleAddComment}
+          onDeleteComment={handleDeleteComment}
+        />
       ) : (
         <BookList 
           books={books}
-          favorites={favorites}
-          toggleFavorite={toggleFavorite}
+          onAddComment={handleAddComment}
+          onDeleteComment={handleDeleteComment}
         />
       )}
     </div>
