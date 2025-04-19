@@ -32,8 +32,8 @@ export default function Components() {
           <Navbar isAuthenticated={isAuthenticated}/>
           <Routes>
             <Route path="/" element={<Home isAuthenticated={isAuthenticated} />} />
-            <Route path="/books/*" element={<Main />} />
-            <Route path="/books/search" element={<BookSearch />} />
+            <Route path="/books" element={<Main />} />
+            <Route path="/books/search" element={<Main initialShowSearch={true} />} />
             <Route path="/favorites" element={<Favorites />} />
             {/*<Route path="*" element={<Navigate to="/" replace />} />*/}
             <Route element={<AuthRoute />}>
@@ -44,10 +44,7 @@ export default function Components() {
             <Route element={<ProtectedRoute />}>
               <Route path="/account" element={<Account setIsAuthenticated={setIsAuthenticated}/>} />
             </Route>
-            {/*<Route element={<ProtectedRoute />} />
-              <Route path="/home" element={<Home />} />
-            </Route>*/}
-            {/*please wrap this home in a ProtectRoute*/}
+
           </Routes>
         </div>
       </Router>

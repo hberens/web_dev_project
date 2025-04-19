@@ -5,21 +5,34 @@ import Favorites from "../Favorites/Favorites";
 import { createComment, deleteComment } from "../../Common/Services/CommentService";
 import { Routes, Route } from "react-router-dom";
 import { useFavorites } from "../../Context/FavoritesContext";
-//import "../../styles.css";
-import "./Main.css"
+import "./Main.css";
 import BookSearch from "../Books/BookSearch"; 
+import { useLocation, useNavigate } from "react-router-dom";
 
-const Main = () => {
+const Main = ({ initialShowSearch = false }) => {
   const [books, setBooks] = useState([]);
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const { favorites, toggleFavorite } = useFavorites();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [showSearch, setShowSearch] = useState(initialShowSearch);
   // State to toggle between full list and search view
-  const [showSearch, setShowSearch] = useState(false);
+  //const [showSearch, setShowSearch] = useState(false);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const [pageInput, setPageInput]     = useState(1);
   const booksPerPage = 60;
+
+  // Whenever the URL changes, drive showSearch from it:
+  useEffect(() => {
+    if (location.pathname.endsWith("/search")) {
+      setShowSearch(true);
+    } else {
+      setShowSearch(false);
+    }
+  }, [location.pathname]);
 
 
   // Fetch all the books
@@ -145,15 +158,15 @@ const Main = () => {
     }
   };
 
+  // When the user clicks “Search” in your main list:
+  const goToSearch = () => {
+    navigate("/books/search");
+    // showSearch will flip automatically via the useEffect above
+  };
+
+
   return (
     <div>
-      {/* Toggle button to switch between search and full list */}
-      {/* <button className="search-toggle-button"
-        onClick={() => setShowSearch((prev) => !prev)}
-      >
-        {showSearch ? "Show All Books" : "Search Books"}
-      </button> */}
-
       {errorMessage && <div className="error">{errorMessage}</div>}
 
       {/* Conditionally render the search component or the complete book list */}
@@ -170,7 +183,7 @@ const Main = () => {
             onAddComment={handleAddComment}
             onDeleteComment={handleDeleteComment}
             showHeader={true}
-            onSearchClick={() => setShowSearch(true)}
+            onSearchClick={goToSearch}
           />
 
           {/* Full‐list pagination controls */}

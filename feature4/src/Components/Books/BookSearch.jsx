@@ -17,9 +17,11 @@ const searchClient = algoliasearch(
 );
 
 export default function BookSearch({
+  books,
   onAddComment,
   onDeleteComment,
 }) {
+
 
   // Render results only once the user has typed a query
   const ConditionalResults = connectStateResults(
@@ -29,24 +31,34 @@ export default function BookSearch({
       const hits = searchResults?.hits || [];
 
       // Map Algolia hits back to your full book objects by ID
-      const matchedBooks = hits.map(hit => ({
-        id: hit.objectID,          // this is crucial for comments/favorites to work
-        title: hit.title,
-        author: hit.author,
-        genre: hit.genre,
-        description: hit.description,
-        average_rating: hit.rating,
-        num_ratings: hit.num_ratings,
-        subtitle: hit.subtitle,
-        num_pages: hit.num_pages,
-        year: hit.year,
-        comments: [],
-      }));
-    
+      // const matchedBooks = hits.map(hit => ({
+      //   id: hit.objectID,
+      //   title: hit.title,
+      //   author: hit.author,
+      //   genre: hit.genre,
+      //   description: hit.description,
+      //   average_rating: hit.rating,
+      //   num_ratings: hit.num_ratings,
+      //   subtitle: hit.subtitle,
+      //   num_pages: hit.num_pages,
+      //   year: hit.year,
+      //   comments: [],
+      // }));
+
+      const matchedBooks = hits
+        .map(hit => {
+          // 1) try the exact match by id
+          let book = books.find(b => b.id === hit.objectID);
+          if (book) return book;
+          // 2) fallback: find the (merged) book by title
+          return books.find(b => b.title === hit.title);
+        })
+        .filter(Boolean);
+      if (!matchedBooks.length) return <div>No matches.</div>;
       // de-deplicate books 
-      const uniqueBooks = Array.from(
-        new Map(matchedBooks.map(book => [book.title, book])).values()
-      );
+      // const uniqueBooks = Array.from(
+      //   new Map(matchedBooks.map(book => [book.title, book])).values()
+      // );
         
       
 
@@ -55,7 +67,7 @@ export default function BookSearch({
           <div className="book-list">
             <div className="book-container">
               <BookList
-                books={uniqueBooks}
+                books={matchedBooks}
                 onAddComment={onAddComment}
                 onDeleteComment={onDeleteComment}
                 showHeader={false} // don't show the header again on the search page
