@@ -69,8 +69,7 @@ const Main = () => {
       console.error("Failed to add comment:", error);
     }
   };
-
-  // Function to handle deleting a comment
+  // function to delete a comment
   const handleDeleteComment = async (commentId, bookId) => {
     try {
       const success = await deleteComment(commentId);
