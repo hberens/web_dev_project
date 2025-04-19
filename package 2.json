@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "algoliasearch": "^5.23.3",
-    "react-instantsearch": "^7.15.5"
-  }
-}
