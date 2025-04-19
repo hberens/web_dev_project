@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CommentSection from "../Comments/CommentSection";
 import StarRating from "../Star/StarRating";
 import "../../styles.css";
+import Parse from "parse";
 
 const BookItem = ({
   book,
@@ -16,33 +17,87 @@ const BookItem = ({
   showComments,
   showDetailsButton
 }) => {
-  const storageKey = `userRatings-${book.id}`; // i'm doing this so that we persist using local storage 
+  const storageKey = `userRatings-${book.id}`;
 
   const [userRatings, setUserRatings] = useState([]);
   const [userRating, setUserRating] = useState(null);
+  const [userId, setUserId] = useState(localStorage.getItem("userId"));  // Track userId
 
-  // Load ratings from localStorage
+  // Load ratings from Parse and localStorage
   useEffect(() => {
-    const stored = localStorage.getItem(storageKey);
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      setUserRatings(parsed);
-    }
-  }, [storageKey]);
+    const fetchRatings = async () => {
+      if (!userId) return; // Skip fetching ratings if no userId
 
-  // this function handles the rating change made by the user
-  const handleRatingChange = (rating) => {
-    const updatedRatings = [...userRatings, rating];
-    setUserRatings(updatedRatings);
-    setUserRating(rating);
-    localStorage.setItem(storageKey, JSON.stringify(updatedRatings));
+      const Rating = Parse.Object.extend("BookRating");
+      const query = new Parse.Query(Rating);
+      query.equalTo("bookId", book.id);
+
+      try {
+        const results = await query.find();
+        const ratings = results.map((r) => r.get("rating"));
+        const avg =
+          ratings.length > 0
+            ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(2)
+            : null;
+
+        setUserRatings(ratings);
+        
+        // Check if the user has already rated the book
+        const existing = results.find((r) => r.get("userId") === userId);
+        setUserRating(existing ? existing.get("rating") : null);
+      } catch (error) {
+        console.error("Error fetching ratings:", error);
+      }
+    };
+
+    fetchRatings();
+  }, [book.id, userId]);  // Runs whenever book or userId changes
+
+  const handleRatingChange = async (rating) => {
+    if (!userId) return; // Don't allow rating if no userId
+
+    const Rating = Parse.Object.extend("BookRating");
+    const query = new Parse.Query(Rating);
+    query.equalTo("bookId", book.id);
+    query.equalTo("userId", userId);
+
+    try {
+      const existing = await query.first();
+      if (existing) {
+        existing.set("rating", rating);
+        await existing.save();
+      } else {
+        const newRating = new Rating();
+        newRating.set("bookId", book.id);
+        newRating.set("userId", userId);
+        newRating.set("rating", rating);
+        await newRating.save();
+      }
+
+      setUserRating(rating);
+
+      // Re-fetch ratings to update average
+      const allQuery = new Parse.Query(Rating);
+      allQuery.equalTo("bookId", book.id);
+      const results = await allQuery.find();
+      const ratings = results.map((r) => r.get("rating"));
+      const avg =
+        ratings.length > 0
+          ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(2)
+          : null;
+      setUserRatings(ratings);
+    } catch (error) {
+      console.error("Error updating rating:", error);
+    }
   };
 
-  // compute user average
-  const userAverage =
-    userRatings.length > 0
-      ? (userRatings.reduce((a, b) => a + b, 0) / userRatings.length).toFixed(2)
-      : null;
+  // Clear ratings if no userId (after logout)
+  useEffect(() => {
+    const userIdFromStorage = localStorage.getItem("userId");
+    if (!userIdFromStorage) {
+      setUserRating(null); // Reset user rating
+    }
+  }, [userId]);  // Trigger this effect when `userId` changes
 
   return (
     <div className="book-item">
@@ -56,15 +111,15 @@ const BookItem = ({
       <small>
         Original Dataset Rating: {book.average_rating} out of {book.num_ratings} ratings
       </small>
-      {userAverage && (
+      {userRatings.length > 0 && (
         <div>
           <small>
-            User Submitted Avg: {userAverage} from {userRatings.length} rating
-            {userRatings.length > 1 ? "s" : ""}
+            User Submitted Avg: {(userRatings.reduce((a, b) => a + b, 0) / userRatings.length).toFixed(2)} from {userRatings.length} rating{userRatings.length > 1 ? "s" : ""}
           </small>
         </div>
       )}
-    {/* added this section to use the star rating */}
+
+      {/* Star Rating Section */}
       <div className="rating-section">
         <StarRating
           currentRating={userRating || 0}
@@ -112,3 +167,6 @@ const BookItem = ({
 };
 
 export default BookItem;
+
+
+

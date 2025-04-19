@@ -29,7 +29,23 @@ export const registerUser = async (userData) => {
 };
 
 // Logout user
+// Logout user
 export const logoutUser = async () => {
+  try {
+    // Log out the user using Parse
+    await Parse.User.logOut();
+    
+    // Remove authentication and user-specific data from localStorage
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("userId");  // Clear userId
+    localStorage.removeItem("userRating");  // Clear user rating
+    
+    return true;
+  } catch (error) {
+    throw new Error("Error logging out");
+  }
+};
+/*export const logoutUser = async () => {
   try {
     await Parse.User.logOut();
     localStorage.removeItem("isAuthenticated");
@@ -37,7 +53,7 @@ export const logoutUser = async () => {
   } catch (error) {
     throw new Error("Error logging out");
   }
-};
+};*/
 
 // Check if user is authenticated
 export const isAuthenticated = () => {
