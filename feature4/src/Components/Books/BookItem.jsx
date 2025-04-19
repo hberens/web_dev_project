@@ -95,7 +95,7 @@ const BookItem = ({
   useEffect(() => {
     const userIdFromStorage = localStorage.getItem("userId");
     if (!userIdFromStorage) {
-      setUserRating(null); // Reset user rating
+      setUserRating(null); // Reset user rating if no userId
     }
   }, [userId]);  // Trigger this effect when `userId` changes
 
@@ -167,6 +167,5 @@ const BookItem = ({
 };
 
 export default BookItem;
-
 
 

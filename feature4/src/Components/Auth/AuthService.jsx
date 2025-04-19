@@ -5,6 +5,7 @@ export const loginUser = async (userData) => {
   try {
     const user = await Parse.User.logIn(userData.email, userData.password);
     localStorage.setItem("isAuthenticated", "true");
+    localStorage.setItem("userId", user.id);  // Store userId after login
     return user;
   } catch (error) {
     throw new Error("Invalid login credentials");
