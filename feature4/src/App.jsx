@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-//import * as Env from "./environments";
 import Parse from "parse";
 import "./styles.css";
 import Components from "./Components/Components";

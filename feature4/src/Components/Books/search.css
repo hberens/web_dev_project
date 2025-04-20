@@ -127,3 +127,107 @@
   opacity: 0.5;
   pointer-events: none;
 }
+/* src/Components/Books/search.css */
+
+/* Space out the page */
+.search-page {
+    padding: 2rem 1rem;
+  }
+  
+  /* Center and style the heading */
+  .search-page h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #0b3821;
+  }
+  
+  /* Center the Algolia search box */
+  .search-container {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+  
+  /* (Optional) tweak the input size */
+  .search-container .ais-SearchBox-input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  /* Remove any leftover list styling */
+  .ais-Hits-list,
+  .ais-Hits-item {
+    all: unset;   /* clear out any A‑isles defaults */
+  }
+  
+  
+  /* pagination */ 
+  .search-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+  
+  /* Optional: tweak the appearance of the page numbers/arrows */
+  .ais-Pagination {
+    font-size: 0.9rem;
+  }
+  
+  .ais-Pagination-item--selected a {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .ais-Pagination-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .ais-Pagination-item {
+    margin: 0;        /* we’re using gap on the parent */
+  }
+  
+  .ais-Pagination-link {
+    display: inline-block;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid #0b3821;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #0b3821;
+    background: white;
+    /*transition: background 0.2s, color 0.2s;*/
+  }
+  
+  /* Hover state */
+  .ais-Pagination-link:hover {
+    background: #0b3821;
+    color: white;
+  }
+  
+  /* Highlight the selected page */
+  .ais-Pagination-item--selected .ais-Pagination-link {
+    background: #0b3821;
+    color: white;
+    font-weight: bold;
+  }
+  
+  
+  /* Prev/Next arrows */
+  .ais-Pagination-item--firstPage .ais-Pagination-link,
+  .ais-Pagination-item--lastPage .ais-Pagination-link {
+    font-size: 1.1rem;
+    padding: 0.3rem 0.65rem;
+  }
+  
+  /* Optional: reduce opacity when disabled */
+  .ais-Pagination-item--disabled .ais-Pagination-link {
+    opacity: 0.5;
+    pointer-events: none;
+  }

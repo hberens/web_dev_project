@@ -4,7 +4,7 @@ import Parse from "parse";
 // Store books globally
 export let Books = { collection: [] };
 
-// READ operation - Get all books from Parse class "Books"
+// READ operation - Get all books from Parse class "NewBooks"
 export const getAllBooks = async () => {
   try {
     // 1) Page through _all_ NewBooks in batches of 1000

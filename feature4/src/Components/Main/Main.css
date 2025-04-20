@@ -66,4 +66,72 @@
   .pagination-controls .page-input {
     width: 5ch;
   }
+  * search button css */
+/* Header container */
+.list-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+    max-width: none;
+    margin: 1rem 0;
+    padding: 0 2rem;
+    box-sizing: border-box;
+  }
+  /* Make the “Search” button small & visible */
+  .search-toggle-button {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    background: white;
+    border: 2px solid #0b3821;
+    color: #0b3821;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+  }
+  
+  .search-toggle-button:hover {
+    background: #0b3821;
+    color: white;
+    transform: translateY(-1px);
+  }
+  
+
+  
+/* Pagination controls (same styling approach as your search) */
+.pagination-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 2rem 0;
+  }
+  
+  .pagination-controls button {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #0b3821;
+    background: white;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .pagination-controls button:hover:not(:disabled) {
+    background: #0b3821;
+    color: white;
+  }
+  
+  .pagination-controls button.active {
+    background: #0b3821;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .pagination-controls button:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  
+  .pagination-controls .page-input {
+    width: 5ch;
+  }
   

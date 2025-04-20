@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { getAllBooks } from "/src/Common/Services/BookService";
 import BookList from "../Books/BookList";
 import Favorites from "../Favorites/Favorites";
@@ -34,6 +34,7 @@ const Main = ({ initialShowSearch = false }) => {
     }
   }, [location.pathname]);
 
+  const [sortBy, setSortBy] = useState(""); // add the sorting feature
 
   // Fetch all the books
   useEffect(() => {
@@ -139,8 +140,7 @@ const Main = ({ initialShowSearch = false }) => {
       console.error("Failed to add comment:", error);
     }
   };
-
-  // Function to handle deleting a comment
+  // function to delete a comment
   const handleDeleteComment = async (commentId, bookId) => {
     try {
       const success = await deleteComment(commentId);
@@ -165,14 +165,40 @@ const Main = ({ initialShowSearch = false }) => {
   };
 
 
+  const sortedBooks = useMemo(() => {
+    const sorted = [...books];
+    if (sortBy === "rating") {
+      sorted.sort((a, b) => b.average_rating - a.average_rating);
+    } else if (sortBy === "title") {
+      sorted.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortBy === "year") {
+      sorted.sort((a, b) => b.year - a.year);
+    }
+    return sorted;
+  }, [books, sortBy]);
+
   return (
     <div>
       {errorMessage && <div className="error">{errorMessage}</div>}
 
       {/* Conditionally render the search component or the complete book list */}
+      <div className="sort-container">
+        <label htmlFor="sort">Sort by:</label>
+          <select
+            id="sort"
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+          >
+          <option value="">-- Select --</option>
+          <option value="rating">Rating (High to Low)</option>
+          <option value="title">Title (A to Z)</option>
+          <option value="year">Year (Newest to Oldest)</option>
+          </select>
+      </div>
+
       {showSearch ? (
         <BookSearch
-          books={books}
+          books={sortedBooks}
           onAddComment={handleAddComment}
           onDeleteComment={handleDeleteComment}
         />

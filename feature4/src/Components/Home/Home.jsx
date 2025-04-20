@@ -8,7 +8,6 @@ const Home = ({ isAuthenticated }) => {
 
   const currentUser = isAuthenticated ? Parse.User.current() : null;
 
-
   const handleLoginRedirect = () => {
     navigate("/login"); 
   };
@@ -24,7 +23,6 @@ const Home = ({ isAuthenticated }) => {
         different categories, add books to your favorites, leave and read
         comments about them, leave ratings, search for books, and more!
       </p>
-
       { !isAuthenticated ? (
         <>
         <button onClick={handleLoginRedirect} className="login-button">
