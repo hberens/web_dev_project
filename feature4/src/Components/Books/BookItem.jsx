@@ -111,11 +111,11 @@ const BookItem = ({
   return (
     <div className="book-item">
       <strong>
-        <i>{book.title}</i>
-      </strong> by {book.author}
+        <i>{title}</i>
+      </strong> by {author}
       <br />
-      <small>Genre: {book.genre}</small>
-      <small> Average Rating: {book.average_rating} out of {book.num_ratings} ratings</small>
+      <small>Genre: {genre}</small>
+      <small> Average Rating: {avgRating} out of {numRatings} ratings</small>
       <div className="description-container">
         <p className="description">{description}</p>
       </div>
@@ -130,7 +130,7 @@ const BookItem = ({
         <div className="more-details">
           {book.subtitle && <p>Subtitle: {book.subtitle}</p>}
           <p>Number of Pages: {book.num_pages}</p>
-          <small>Published in {book.year}</small>
+          <small>Published in {year}</small>
         </div>
       )}
 
