@@ -116,7 +116,7 @@ const BookItem = ({
       <br />
       <small>Genre: {genre}</small>
       <small>
-        Original Dataset Rating: {book.average_rating} out of {book.num_ratings} ratings
+        Original Dataset Rating: {avgRating} out of {numRatings} ratings
       </small>
       {userRatings.length > 0 && (
         <div>
@@ -132,6 +132,10 @@ const BookItem = ({
           currentRating={userRating || 0}
           onRatingChange={handleRatingChange}
         />
+      </div>
+
+      <div className="description-container">
+        <p className="description">{description}</p>
       </div>
 
       {showDetailsButton && (
