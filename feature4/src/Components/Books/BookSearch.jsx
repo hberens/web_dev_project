@@ -19,6 +19,7 @@ const searchClient = algoliasearch(
 export default function BookSearch({
   onAddComment,
   onDeleteComment,
+  sortBy
 }) {
 
   // Render results only once the user has typed a query
@@ -48,6 +49,18 @@ export default function BookSearch({
         new Map(matchedBooks.map(book => [book.title, book])).values()
       );
 
+      // Sort based on sortBy prop
+      const sortedBooks = [...uniqueBooks].sort((a, b) => {
+        if (sortBy === "rating") {
+          return b.average_rating - a.average_rating;
+        } else if (sortBy === "title") {
+          return a.title.localeCompare(b.title);
+        } else if (sortBy === "year") {
+          return b.year - a.year;
+        }
+        return 0;
+      });
+
 
 
       return (
@@ -55,7 +68,7 @@ export default function BookSearch({
           <div className="book-list">
             <div className="book-container">
               <BookList
-                books={uniqueBooks}
+                books={sortedBooks}
                 onAddComment={onAddComment}
                 onDeleteComment={onDeleteComment}
                 showHeader={false} // don't show the header again on the search page

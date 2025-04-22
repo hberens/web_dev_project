@@ -25,6 +25,8 @@ const Main = ({ initialShowSearch = false }) => {
   const [pageInput, setPageInput]     = useState(1);
   const booksPerPage = 60;
 
+  const [sortBy, setSortBy] = useState(""); // add the sorting feature
+
   // Whenever the URL changes, drive showSearch from it:
   useEffect(() => {
     if (location.pathname.endsWith("/search")) {
@@ -34,7 +36,6 @@ const Main = ({ initialShowSearch = false }) => {
     }
   }, [location.pathname]);
 
-  const [sortBy, setSortBy] = useState(""); // add the sorting feature
 
   // Fetch all the books
   useEffect(() => {
@@ -77,11 +78,23 @@ const Main = ({ initialShowSearch = false }) => {
   useEffect(() => {
     setPageInput(currentPage);
   }, [currentPage]);
+  // sort the books first
+  const sortedBooks = useMemo(() => {
+    const sorted = [...books];
+    if (sortBy === "rating") {
+      sorted.sort((a, b) => b.average_rating - a.average_rating);
+    } else if (sortBy === "title") {
+      sorted.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortBy === "year") {
+      sorted.sort((a, b) => b.year - a.year);
+    }
+    return sorted;
+  }, [books, sortBy]);
 
   // Compute slice for current page
   const lastIndex   = currentPage * booksPerPage;
   const firstIndex  = lastIndex - booksPerPage;
-  const currentBooks = books.slice(firstIndex, lastIndex);
+  const currentBooks = sortedBooks.slice(firstIndex, lastIndex);
   const totalPages   = Math.ceil(books.length / booksPerPage);
 
   // Handlers
@@ -165,17 +178,17 @@ const Main = ({ initialShowSearch = false }) => {
   };
 
 
-  const sortedBooks = useMemo(() => {
-    const sorted = [...books];
-    if (sortBy === "rating") {
-      sorted.sort((a, b) => b.average_rating - a.average_rating);
-    } else if (sortBy === "title") {
-      sorted.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (sortBy === "year") {
-      sorted.sort((a, b) => b.year - a.year);
-    }
-    return sorted;
-  }, [books, sortBy]);
+    // const sortedBooks = useMemo(() => {
+    //   const sorted = [...books];
+    //   if (sortBy === "rating") {
+    //     sorted.sort((a, b) => b.average_rating - a.average_rating);
+    //   } else if (sortBy === "title") {
+    //     sorted.sort((a, b) => a.title.localeCompare(b.title));
+    //   } else if (sortBy === "year") {
+    //     sorted.sort((a, b) => b.year - a.year);
+    //   }
+    //   return sorted;
+    // }, [books, sortBy]);
 
   return (
     <div>
@@ -201,6 +214,7 @@ const Main = ({ initialShowSearch = false }) => {
           books={sortedBooks}
           onAddComment={handleAddComment}
           onDeleteComment={handleDeleteComment}
+          sortBy={sortBy}
         />
       ) : (
         <>

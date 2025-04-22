@@ -115,9 +115,23 @@ const BookItem = ({
       </strong> by {author}
       <br />
       <small>Genre: {genre}</small>
-      <small> Average Rating: {avgRating} out of {numRatings} ratings</small>
-      <div className="description-container">
-        <p className="description">{description}</p>
+      <small>
+        Original Dataset Rating: {book.average_rating} out of {book.num_ratings} ratings
+      </small>
+      {userRatings.length > 0 && (
+        <div>
+          <small>
+            User Submitted Avg: {(userRatings.reduce((a, b) => a + b, 0) / userRatings.length).toFixed(2)} from {userRatings.length} rating{userRatings.length > 1 ? "s" : ""}
+          </small>
+        </div>
+      )}
+
+      {/* Star Rating Section */}
+      <div className="rating-section">
+        <StarRating
+          currentRating={userRating || 0}
+          onRatingChange={handleRatingChange}
+        />
       </div>
 
       {showDetailsButton && (
