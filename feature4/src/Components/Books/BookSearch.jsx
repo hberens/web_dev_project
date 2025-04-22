@@ -10,6 +10,7 @@ import {
 import algoliasearch from 'algoliasearch/lite';
 import BookList from './BookList';
 import './search.css';
+import { useFavorites } from '../../Context/FavoritesContext';
 
 const searchClient = algoliasearch(
   import.meta.env.VITE_ALGOLIA_APP_ID,
@@ -19,8 +20,11 @@ const searchClient = algoliasearch(
 export default function BookSearch({
   onAddComment,
   onDeleteComment,
-  sortBy
+  sortBy,
+  allBooks,
+  books // Add books prop to receive the full book list
 }) {
+  const { favorites } = useFavorites();
 
   // Render results only once the user has typed a query
   const ConditionalResults = connectStateResults(
@@ -30,23 +34,36 @@ export default function BookSearch({
       const hits = searchResults?.hits || [];
 
       // Map Algolia hits back to your full book objects by ID
-      const matchedBooks = hits.map(hit => ({
-        id: hit.objectID, 
-        title: hit.title,
-        author: hit.author,
-        genre: hit.genre,
-        description: hit.description,
-        average_rating: hit.rating,
-        num_ratings: hit.num_ratings,
-        subtitle: hit.subtitle,
-        num_pages: hit.num_pages,
-        year: hit.year,
-        comments: [],
-      }));
+      const matchedBooks = hits.map(hit => {
+        // First try to find by ID
+        let existingBook = allBooks.find(book => book.id === hit.objectID);
+        
+        // If not found by ID, try to find by title
+        if (!existingBook) {
+          existingBook = allBooks.find(book => 
+            book.title.toLowerCase() === hit.title.toLowerCase()
+          );
+        }
+        
+        // If we found an existing book, use its data, otherwise create a new book object
+        return existingBook || {
+          id: hit.objectID, 
+          title: hit.title,
+          author: hit.author,
+          genre: hit.genre,
+          description: hit.description,
+          average_rating: hit.rating,
+          num_ratings: hit.num_ratings,
+          subtitle: hit.subtitle,
+          num_pages: hit.num_pages,
+          year: hit.year,
+          comments: [],
+        };
+      });
 
-      // de-deplicate books 
+      // de-deplicate books by title
       const uniqueBooks = Array.from(
-        new Map(matchedBooks.map(book => [book.title, book])).values()
+        new Map(matchedBooks.map(book => [book.title.toLowerCase(), book])).values()
       );
 
       // Sort based on sortBy prop
@@ -60,8 +77,6 @@ export default function BookSearch({
         }
         return 0;
       });
-
-
 
       return (
         <>

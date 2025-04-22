@@ -171,7 +171,7 @@ const Main = ({ initialShowSearch = false }) => {
     }
   };
 
-  // When the user clicks “Search” in your main list:
+  // When the user clicks "Search" in your main list:
   const goToSearch = () => {
     navigate("/books/search");
     // showSearch will flip automatically via the useEffect above
@@ -211,10 +211,11 @@ const Main = ({ initialShowSearch = false }) => {
 
       {showSearch ? (
         <BookSearch
-          books={sortedBooks}
+          books={books}
           onAddComment={handleAddComment}
           onDeleteComment={handleDeleteComment}
           sortBy={sortBy}
+          allBooks={books}
         />
       ) : (
         <>
