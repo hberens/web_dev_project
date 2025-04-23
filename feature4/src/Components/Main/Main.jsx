@@ -17,8 +17,6 @@ const Main = ({ initialShowSearch = false }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(initialShowSearch);
-  // State to toggle between full list and search view
-  //const [showSearch, setShowSearch] = useState(false);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -176,19 +174,6 @@ const Main = ({ initialShowSearch = false }) => {
     navigate("/books/search");
     // showSearch will flip automatically via the useEffect above
   };
-
-
-    // const sortedBooks = useMemo(() => {
-    //   const sorted = [...books];
-    //   if (sortBy === "rating") {
-    //     sorted.sort((a, b) => b.average_rating - a.average_rating);
-    //   } else if (sortBy === "title") {
-    //     sorted.sort((a, b) => a.title.localeCompare(b.title));
-    //   } else if (sortBy === "year") {
-    //     sorted.sort((a, b) => b.year - a.year);
-    //   }
-    //   return sorted;
-    // }, [books, sortBy]);
 
   return (
     <div>
