@@ -35,17 +35,8 @@ const BookList = ({ books, onAddComment, onDeleteComment, showHeader=true, onSea
   };
 
   // Handle comment deletion
-  const handleDeleteComment = async (commentId, bookId) => {
-    if (!window.confirm("Are you sure you want to delete this comment?")) return;
-
-    try {
-      const success = await deleteComment(commentId);
-      if (success) {
-        onDeleteComment(commentId, bookId);
-      }
-    } catch (error) {
-      console.error("Failed to delete comment:", error);
-    }
+  const handleDeleteComment = (commentId, bookId) => {
+    onDeleteComment(commentId, bookId);
   };
 
   const handleToggleDetails = (bookId) => {
