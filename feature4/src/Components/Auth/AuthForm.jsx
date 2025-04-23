@@ -1,3 +1,5 @@
+// AuthForm component handles both login and registration forms
+// Uses conditional rendering to show different fields based on isLogin prop
 import React from "react";
 import './AuthForm.css';
 
@@ -18,6 +20,7 @@ const AuthForm = ({ user, onChange, onSubmit, isLogin }) => {
         </div>
 
         <form onSubmit={onSubmit} className="bookstore-form">
+          {/* Only show name fields during registration */}
           {!isLogin && (
             <div className="name-fields">
               <div className="form-group">
@@ -47,6 +50,7 @@ const AuthForm = ({ user, onChange, onSubmit, isLogin }) => {
             </div>
           )}
           
+          {/* Common fields for both login and registration */}
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <input

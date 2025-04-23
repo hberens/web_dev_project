@@ -1,3 +1,4 @@
+// Account component displays user information and provides logout functionality
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser, getCurrentUser } from "../Auth/AuthService";
@@ -5,6 +6,7 @@ import './Account.css';
 
 const Account = ({setIsAuthenticated}) => {
   const navigate = useNavigate();
+  // State to store user data including favorites
   const [userData, setUserData] = useState({
     username: '',
     email: '',
@@ -12,6 +14,7 @@ const Account = ({setIsAuthenticated}) => {
     favoriteBooks: []
   });
 
+  // Load user data and favorites when component mounts
   useEffect(() => {
     const loadUserData = async () => {
       try {
@@ -31,6 +34,7 @@ const Account = ({setIsAuthenticated}) => {
     loadUserData();
   }, []);
 
+  // Handle user logout and redirect to login page
   const handleLogout = async () => {
     try {
       await logoutUser();

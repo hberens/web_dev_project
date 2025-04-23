@@ -1,6 +1,9 @@
 import Parse from "parse";
 
-// Login user
+// Authentication service functions for user management
+// Handles login, registration, logout, and user data retrieval
+
+// Authenticate user with email and password
 export const loginUser = async (userData) => {
   try {
     const user = await Parse.User.logIn(userData.email, userData.password);
@@ -12,7 +15,7 @@ export const loginUser = async (userData) => {
   }
 };
 
-// Register user
+// Create new user account with provided details
 export const registerUser = async (userData) => {
   try {
     const user = new Parse.User();
@@ -29,8 +32,7 @@ export const registerUser = async (userData) => {
   }
 };
 
-// Logout user
-// Logout user
+// Logout current user and clear session data
 export const logoutUser = async () => {
   try {
     // Log out the user using Parse
@@ -46,24 +48,15 @@ export const logoutUser = async () => {
     throw new Error("Error logging out");
   }
 };
-/*export const logoutUser = async () => {
-  try {
-    await Parse.User.logOut();
-    localStorage.removeItem("isAuthenticated");
-    return true;
-  } catch (error) {
-    throw new Error("Error logging out");
-  }
-};*/
 
-// Check if user is authenticated
+// Check if user is currently authenticated
 export const isAuthenticated = () => {
   return Parse.User.current() && 
          Parse.User.current().authenticated() && 
          localStorage.getItem("isAuthenticated") === "true";
 };
 
-// Get current user data
+// Retrieve current user's profile data
 export const getCurrentUser = async () => {
   try {
     const currentUser = Parse.User.current();

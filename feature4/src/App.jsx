@@ -6,8 +6,6 @@ import "./styles.css";
 import Components from "./Components/Components";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-// import SearchComponent from './Components/Search/SearchComponent';
-
 
 const Env = {
     APPLICATION_ID: "mpQFAZaH0SLscTdKMSuBnatnNGS7FlZQBdB1HdY7",
