@@ -44,7 +44,6 @@ export default function Components() {
             <Route element={<ProtectedRoute />}>
               <Route path="/account" element={<Account setIsAuthenticated={setIsAuthenticated}/>} />
             </Route>
-
           </Routes>
         </div>
       </Router>

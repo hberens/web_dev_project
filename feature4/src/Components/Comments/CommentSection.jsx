@@ -2,6 +2,7 @@ import React from "react";
 import "../../styles.css"
 
 const CommentSection = ({ comments, commentData, onInputChange, onSubmitComment, onDeleteComment, bookId }) => {
+
   const handleDelete = (commentId) => {
     if (window.confirm("Are you sure you want to delete this comment?")) {
       onDeleteComment(commentId, bookId);

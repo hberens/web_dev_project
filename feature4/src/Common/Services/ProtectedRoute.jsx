@@ -1,8 +1,10 @@
+
 // ProtectedRoute component ensures that only authenticated users can access certain routes
 // If user is not authenticated, they are redirected to the login page
 //import React from "react";
 //import { Navigate } from "react-router-dom";
 //import { useAuth } from "../../Context/AuthContext";
+
 
 
 import { Navigate, Outlet } from "react-router-dom";
