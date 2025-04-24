@@ -2,6 +2,13 @@ import React from "react";
 import "../../styles.css"
 
 const CommentSection = ({ comments, commentData, onInputChange, onSubmitComment, onDeleteComment, bookId }) => {
+
+  const handleDelete = (commentId) => {
+    if (window.confirm("Are you sure you want to delete this comment?")) {
+      onDeleteComment(commentId, bookId);
+    }
+  };
+
   return (
     <div className="comments-section">
       <h4>Comments:</h4>
@@ -13,7 +20,7 @@ const CommentSection = ({ comments, commentData, onInputChange, onSubmitComment,
               <strong>{comment.username}</strong>: {comment.text}
               <button
                 className="delete-comment"
-                onClick={() => onDeleteComment(comment.id, bookId)}
+                onClick={() => handleDelete(comment.id)}
               >
                 Delete
               </button>

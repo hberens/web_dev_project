@@ -4,7 +4,7 @@ import { useState } from "react";
 import { deleteComment } from "../../Common/Services/CommentService";
 import BookItem from "./BookItem";
 
-const BookList = ({ books, onAddComment, onDeleteComment }) => {
+const BookList = ({ books, onAddComment, onDeleteComment, showHeader=true, onSearchClick }) => {
   const { favorites, toggleFavorite } = useFavorites();
   const [commentData, setCommentData] = useState({});
   const [expandedBookId, setExpandedBookId] = useState(null);
@@ -35,17 +35,8 @@ const BookList = ({ books, onAddComment, onDeleteComment }) => {
   };
 
   // Handle comment deletion
-  const handleDeleteComment = async (commentId, bookId) => {
-    if (!window.confirm("Are you sure you want to delete this comment?")) return;
-
-    try {
-      const success = await deleteComment(commentId);
-      if (success) {
-        onDeleteComment(commentId, bookId);
-      }
-    } catch (error) {
-      console.error("Failed to delete comment:", error);
-    }
+  const handleDeleteComment = (commentId, bookId) => {
+    onDeleteComment(commentId, bookId);
   };
 
   const handleToggleDetails = (bookId) => {
@@ -54,16 +45,31 @@ const BookList = ({ books, onAddComment, onDeleteComment }) => {
 
   return (
     <div className="main-list">
-      <hr />
-      <h2>Popular Books Right Now</h2>
-      <p>
-        Here we share a list of the most popular books on Amazon, Goodreads, and Kindle,
-        along with their titles, authors, average ratings, and descriptions. Happy reading!
-      </p>
+      {showHeader && (
+        <div className="list-header-container">
+          <div>
+            <hr />
+            <h2>Popular Books Right Now</h2>
+            <p>
+              Here we share a list of the most popular books on Amazon, Goodreads,
+              and Kindle, along with their titles, authors, average ratings, and
+              descriptions. Happy reading!
+            </p>
+          </div>
+          {onSearchClick && (
+            <button
+              className="search-toggle-button"
+              onClick={onSearchClick}
+            >
+              Search
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Display Book List */}
       <div className="book-list">
-        <h3>Books:</h3>
+        {showHeader && <h3>Books:</h3>}
         {books.length > 0 ? (
           <div className="book-container">
             {books.map((book) => (

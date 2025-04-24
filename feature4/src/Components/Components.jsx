@@ -12,6 +12,7 @@ import AuthLogin from "./Auth/AuthLogin.jsx";
 import ProtectedRoute from "../Common/Services/ProtectedRoute.jsx";
 import Account from "./Account/Account.jsx"
 import AuthRoute from "../Common/Services/AuthRoute.jsx";
+import BookSearch from "./Books/BookSearch";
 
 export default function Components() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -30,8 +31,9 @@ export default function Components() {
         <div>
           <Navbar isAuthenticated={isAuthenticated}/>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/books/*" element={<Main />} />
+            <Route path="/" element={<Home isAuthenticated={isAuthenticated} />} />
+            <Route path="/books" element={<Main />} />
+            <Route path="/books/search" element={<Main initialShowSearch={true} />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="*" element={<Navigate to="/" replace />} />
             <Route element={<AuthRoute />}>

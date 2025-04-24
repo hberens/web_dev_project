@@ -1,0 +1,238 @@
+/* src/Components/Books/search.css */
+
+/* Space out the page */
+.search-page {
+  padding: 2rem 1rem;
+}
+
+/* Center and style the heading */
+.search-page h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #0b3821;
+}
+
+/* Center the Algolia search box, constrain its width */
+.search-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.search-container .ais-SearchBox {
+  width: 500px;
+}
+
+/* Make the form fill container but never exceed 500px */
+.search-container .ais-SearchBox-form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+}
+
+/* Fix the input field to 100% of the form, no flex-grow */
+.search-container .ais-SearchBox-input {
+  flex: none;          /* disable flex-grow */
+  width: 100%;         /* fill the form */
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #0b3821;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  transition: box-shadow 0.2s ease;
+}
+.search-container .ais-SearchBox-input:focus {
+  box-shadow: 0 0 0 3px rgba(11, 56, 33, 0.3);
+}
+
+/* “Search” button */
+.search-container .ais-SearchBox-submit {
+  background-color: #0b3821;
+  border: 2px solid #0b3821;
+  border-radius: 0 8px 8px 0;
+  padding: 0 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+.search-container .ais-SearchBox-submit:hover {
+  background-color: #07441a;
+  transform: scale(1.05);
+}
+.search-container .ais-SearchBox-submit svg {
+  fill: white;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+/* Hide the clear button */
+.search-container .ais-SearchBox-reset {
+  display: none;
+}
+
+/* Clear any Algolia list defaults */
+.ais-Hits-list,
+.ais-Hits-item {
+  all: unset;
+}
+
+/* ─── Pagination Styling ───────────────────────────────────────── */
+.search-pagination {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.ais-Pagination-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.ais-Pagination-item {
+  margin: 0;
+}
+
+.ais-Pagination-link {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid #0b3821;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #0b3821;
+  background: white;
+}
+
+.ais-Pagination-link:hover:not(.ais-Pagination-item--disabled) {
+  background: #0b3821;
+  color: white;
+  transform: scale(1.05);
+}
+
+.ais-Pagination-item--selected .ais-Pagination-link {
+  background: #0b3821;
+  color: white;
+  font-weight: bold;
+  border-color: #0b3821;
+}
+
+.ais-Pagination-item--firstPage .ais-Pagination-link,
+.ais-Pagination-item--lastPage .ais-Pagination-link {
+  font-size: 1.1rem;
+}
+
+.ais-Pagination-item--disabled .ais-Pagination-link {
+  opacity: 0.5;
+  pointer-events: none;
+}
+/* src/Components/Books/search.css */
+
+/* Space out the page */
+.search-page {
+    padding: 2rem 1rem;
+  }
+  
+  /* Center and style the heading */
+  .search-page h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #0b3821;
+  }
+  
+  /* Center the Algolia search box */
+  .search-container {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+  
+  /* (Optional) tweak the input size */
+  .search-container .ais-SearchBox-input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  /* Remove any leftover list styling */
+  .ais-Hits-list,
+  .ais-Hits-item {
+    all: unset;   /* clear out any A‑isles defaults */
+  }
+  
+  
+  /* pagination */ 
+  .search-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+  
+  /* Optional: tweak the appearance of the page numbers/arrows */
+  .ais-Pagination {
+    font-size: 0.9rem;
+  }
+  
+  .ais-Pagination-item--selected a {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .ais-Pagination-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .ais-Pagination-item {
+    margin: 0;        /* we’re using gap on the parent */
+  }
+  
+  .ais-Pagination-link {
+    display: inline-block;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid #0b3821;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #0b3821;
+    background: white;
+    /*transition: background 0.2s, color 0.2s;*/
+  }
+  
+  /* Hover state */
+  .ais-Pagination-link:hover {
+    background: #0b3821;
+    color: white;
+  }
+  
+  /* Highlight the selected page */
+  .ais-Pagination-item--selected .ais-Pagination-link {
+    background: #0b3821;
+    color: white;
+    font-weight: bold;
+  }
+  
+  
+  /* Prev/Next arrows */
+  .ais-Pagination-item--firstPage .ais-Pagination-link,
+  .ais-Pagination-item--lastPage .ais-Pagination-link {
+    font-size: 1.1rem;
+    padding: 0.3rem 0.65rem;
+  }
+  
+  /* Optional: reduce opacity when disabled */
+  .ais-Pagination-item--disabled .ais-Pagination-link {
+    opacity: 0.5;
+    pointer-events: none;
+  }

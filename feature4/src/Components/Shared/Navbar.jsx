@@ -38,6 +38,11 @@ const Navbar = ({ isAuthenticated }) => {
           </Link>
         </li>
         {/* if they are logged in display an ccount page  */}
+        <li className="nav-item">
+          <Link to="/books/search" className="nav-link">
+            Search Books
+          </Link>
+        </li>
         {isAuthenticated ? (
           <li className="nav-item">
             <Link to="/account" className="nav-link">
@@ -50,6 +55,7 @@ const Navbar = ({ isAuthenticated }) => {
               Login
             </Link>
           </li>
+          
         )}
       </ul>
     </nav>
