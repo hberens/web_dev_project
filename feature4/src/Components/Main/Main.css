@@ -28,8 +28,23 @@
     transform: translateY(-1px);
   }
   
-
+  .sort-container {
+    top: 20px;
+    left: 0px;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+  }
   
+  @media (max-width: 600px) {
+    .sort-container {
+      top: 10px;
+      left: 10px;
+      padding: 0.4rem 0.8rem;
+    }
+  }
+  
+
 /* Pagination controls (same styling approach as your search) */
 .pagination-controls {
     display: flex;

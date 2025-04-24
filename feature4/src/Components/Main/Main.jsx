@@ -176,7 +176,7 @@ const Main = ({ initialShowSearch = false }) => {
   };
 
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
       {errorMessage && <div className="error">{errorMessage}</div>}
 
       {/* Conditionally render the search component or the complete book list */}
@@ -194,6 +194,7 @@ const Main = ({ initialShowSearch = false }) => {
           </select>
       </div>
 
+      {/* render the search bar component */}
       {showSearch ? (
         <BookSearch
           books={books}

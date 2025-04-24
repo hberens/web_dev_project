@@ -14,8 +14,13 @@
 
 /* Center the Algolia search box, constrain its width */
 .search-container {
-  max-width: 500px;    /* ← reduced from 600 to 500 */
-  margin: 0 auto 2rem;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.search-container .ais-SearchBox {
+  width: 500px;
 }
 
 /* Make the form fill container but never exceed 500px */
