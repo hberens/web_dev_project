@@ -11,7 +11,7 @@ const Navbar = ({ isAuthenticated }) => {
 
   return (
     <nav>
-      <div className="logo">Book App</div>
+      <div className="logo">BookBridge</div>
 
       {/* Hamburger menu icon */}
       <div className="hamburger-menu" onClick={toggleMenu}>

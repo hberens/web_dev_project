@@ -17,7 +17,7 @@ const Home = ({ isAuthenticated }) => {
 
   return (
     <div className="home-container">
-      <h1>Welcome to the Book App!</h1>
+      <h1>Welcome to BookBridge!</h1>
       <p>
         Discover and explore a wide variety of books. You can browse through
         different categories, add books to your favorites, leave and read
