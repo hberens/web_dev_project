@@ -1,5 +1,18 @@
 Change Log
 All notable changes to this project will be documented in this file.
+# v0.4.0 - 2025-03-27 </br>
+## Added
+- Added a search bar to search for any book on the website by title, author, description, and genre.
+- Added pagination to our books page and our search page.
+- Added a ratings button to each book item that users can select to rate a book out of 5 stars. Added a "BookRating" class to associate each rating to each book as well as the specific user.
+- Added a selector dropdown on the main books page that sorts the books alphabetically, by rating, or by ... </br> </br>
+## Changed 
+- Changed the backend data to create cloud jobs to synchronize our Algolia app with our back4app data.
+- Edited the css of the Home page as well as the Books Main page. </br> </br>
+## Fixed 
+- Console errors with our comments.
+- Changed / fixed the favorites page to persist when a user logs out and then logs back in.
+
 # v0.3.0 - 2025-03-27 </br>
 ## Added
 - Added user authentication through an "Auth" component
@@ -14,6 +27,7 @@ All notable changes to this project will be documented in this file.
 ## Fixed 
 - Parse modules issues and incosistent updates between the backend and the frontend.
 - Fixed persistence among sessions so that all comments appear on each login.
+
 # v0.2.0 - 2025-03-04 </br>
 ## Added
 - Created "Books" and "Comment" Classes for Parse modules
