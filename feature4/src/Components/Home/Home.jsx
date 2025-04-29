@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.css"
 import { useNavigate } from "react-router-dom";
 import Parse from "parse";
+import logo from "../../assets/bookbridge-logo.png";
 
 const Home = ({ isAuthenticated }) => {
   const navigate = useNavigate();
@@ -17,7 +18,10 @@ const Home = ({ isAuthenticated }) => {
 
   return (
     <div className="home-container">
-      <h1>Welcome to BookBridge!</h1>
+      <div className="home-header">
+        <img src={logo} alt="BookBridge Logo" className="home-logo" />
+        <h1>Welcome to BookBridge!</h1>
+      </div>
       <p>
         Discover and explore a wide variety of books. You can browse through
         different categories, add books to your favorites, leave and read

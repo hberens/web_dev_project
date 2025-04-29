@@ -128,3 +128,17 @@
       margin: 10px 0;
     }
 }
+
+.home-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: -1rem;
+}
+
+.home-logo {
+  height: 160px;
+  width: auto;
+}

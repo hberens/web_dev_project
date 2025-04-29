@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles.css"; // Import CSS file
+import logo from "../../assets/bookbridge-logo.png"; // Import logo image
 
 const Navbar = ({ isAuthenticated }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to toggle menu visibility
@@ -11,7 +12,10 @@ const Navbar = ({ isAuthenticated }) => {
 
   return (
     <nav>
-      <div className="logo">BookBridge</div>
+      <div className="logo">
+        <img src={logo} alt="BookBridge Logo" className="logo-image" />
+        <span>BookBridge</span>
+      </div>
 
       {/* Hamburger menu icon */}
       <div className="hamburger-menu" onClick={toggleMenu}>

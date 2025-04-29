@@ -33,11 +33,17 @@ nav {
 }
 
 .logo {
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 1.5rem;
-  margin-right: 2rem;
-  color:white;
-  transition: transform 0.3s ease;
+  font-weight: bold;
+  color: white;
+}
+
+.logo-image {
+  height: 40px;
+  width: auto;
 }
 
 .logo:hover {
