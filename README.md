@@ -12,6 +12,15 @@ Currently, two official plugins are available:
 
 If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
-## Book App
+## Book App Description
 
-This is an app that displays the most popular books right now. It allows you to select certain books to mark them as your favorites that you can then see on a new Favorites page. It also allows for a user to scroll to view and delete some comments about the book on the main Books page. 
+This is an app that displays the most popular books right now. It allows you to select certain books to mark them as your favorites that you can then see on a new Favorites page. It also allows for a user to scroll to view and delete some comments about the book on the main Books page. Additionally, it allows users to search for any book by title, author, description, genre, and more. Moreover, the users can sort the books page alphabetically, by rating, and by year as to find books more easily. Lastly, users can rate books personally on their account as well as see the average ratings by other users. 
+
+# Features
+- Live Search using Algolia
+- Favorites Page to track preferred books
+- Comments per book (add/delete)
+- Ratings per book
+- Sorting of books on Main page
+- Responsive and minimal UI
+- Powered by Vite with HMR
